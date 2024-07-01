@@ -1,1 +1,55 @@
-@use '../../styles/variables' as v;
+//@use '../../styles/variables' as v;
+
+.Login {
+  text-align:center;
+}
+
+h2{
+  margin: 2.5rem;
+}
+
+.Website__Title{
+  margin-left: 15rem;
+  margin-top: 3rem;
+  font-size: x-large;
+}
+
+.Login__email{
+  margin-bottom: 0.3rem;
+}
+
+.Login__password{
+  margin-bottom: 1.5rem;
+}
+
+.Login__newAccount{
+  margin-bottom: 1.25rem;
+}
+
+.Login__confirmation {
+display: flex;
+flex-direction:row ;
+margin: auto;
+margin-bottom: 2.5rem;
+width: 7.5%;
+padding: 0.2rem 1.9rem;
+border-radius: 0.2rem;
+border: none;
+
+background: #000000;
+color: #DFDEDF;
+}
+
+.Login__createAccount {
+  display: flex;
+  flex-direction:row ;
+  margin: auto;
+  margin-bottom: 2.5rem;
+  width: 7.5%;
+  padding: 0.2rem 2rem;
+  border-radius: 0.2rem;
+  border: none;
+  
+  background: #000000;
+  color: #DFDEDF;
+  }
