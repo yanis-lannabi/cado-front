@@ -1,16 +1,15 @@
-import logo from '../../assets/logo.svg';
+import logo from '../../../../public/MainLogo.png';
 
-import './HomePage.scss';
+import './App.scss';
 
 function HomePage() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="HomePage">
+      <header className="HomePage-header">
+        <img src={logo} className="HomePage-logo" alt="logo" />
 
         <p>
-          Edit <code>src/components/HomePage/HomePage.tsx</code> and save to
-          reload.
+          Edit <code>src/components/App/App.tsx</code> and save to reload.
         </p>
 
         <a
