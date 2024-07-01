@@ -3,46 +3,53 @@ import './LegalNotices.scss';
 function LegalNotices() {
   return (
     <article className="LegalNotices">
-      <h2 className="LegalNotices-title">LegalNotices</h2>
-      <div className="LegalNotices-category" />
-      <p className="LegalNotices-content">
-        Privacy Policy Last updated on 18/11/2022 Thank you for visiting
-        secretsantaorganizer.com created by iO Group (2200 Herentals, Zavelheide
-        15, BE0712.677.311) (hereafter ‘we’ ‘us’). This privacy policy tells you
-        how we use personal information collected while using the site
-        secretsantaorganizer.com (hereafter ‘Website’) and the related services
-        (hereafter “Services”). By using our Website and/or our Services, you
-        acknowledge that you have carefully read this Privacy Policy.We reserve
-        the right to regularly change the Privacy Policy as we deem fit. Such
-        change will be communicated through the website. Note: the privacy
-        practices set forth in this privacy policy are only applicable for this
-        Website and the Services . If you link to other web sites, it’s advised
-        to review the privacy policies on those sites. Cookie/Tracking
-        Technology This Website uses cookies present in Google Analytics for
-        gathering anonymous information such as browser type and operating
-        tracking the number of visitors to the site, and understanding how
-        visitors use the site. For more information regarding our use of
-        cookies, please read our cookie policy. Collection of Information We
-        collect personally identifiable information, like names and email
-        addresses and personal messages, when submitted by our visitors with
-        their permission. As administrator of a party you guarantee that you
-        have the consent of the other participants to share their e-mail
-        addresses for the use of Secret Santa tool. If you declare you have
-        obtained this consent we can reasonably assume that you actually
-        obtained this consent. The information you provide is only used to
-        fulfill your specific request and the use of the Services of Secret
-        principle, we obtain this above-mentioned personal data directly from
-        you. We do not send any personal data that you provide through social
-        social media providers, unless you agree to this. If and If and your
-        your registration on the Website or use of the Website or Services can
-        regarded (a) as a breach of the terms and conditions of the intellectual
-        property rights or any other right of a third party, (b) a threat to the
-        security or integrity of the Services, (c) a danger to our or our
-        subcontractors’ Website, Services or systems as a result of viruses,
-        Trojan Horses, spyware, malware or any other form of malicious code, or
-        (d) in any manner whatsoever illegal, unlawful, discriminatory or
-        insulting, we may process your data in our own interests, in our in our
-        partners’ or in third parties’ interests.
+      <h3 className="LegalNotices-title">Mention légales:</h3>
+      <h5 className="LegalNotices-date">En vigueur au 19/07/2024</h5>
+      <p className="LegalNotices-preface">
+        Conformément aux dispositions des Articles 6-III et 19 de la Loi
+        n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique,
+        dite L.C.E.N., il est porté à la connaissance des utilisateurs et
+        visiteurs, ci-après l'"Utilisateur", du site Cad'O , ci-après le "Site",
+        les présentes mentions légales. La connexion et la navigation sur le
+        Site par l’Utilisateur implique acceptation intégrale et sans réserve
+        des présentes mentions légales. Ces dernières sont accessibles sur le
+        Site à la rubrique « Mentions légales ».
+      </p>
+      <div className="LegalNotices-content" />
+      <h3>ARTICLE 1 - L'EDITEUR</h3>
+      <p className="LegalNotices-editor">
+        L’édition et la direction de la publication du Site est assurée par X
+        XX, domiciliée _______________, dont le numéro de téléphone est
+        _______________, et l'adresse e-mail _______________. ci-après
+        l'"Editeur".
+      </p>
+      <h3>ARTICLE 2 - L'HEBERGEUR</h3>
+      <p className="LegalNotices-host">
+        L'hébergeur du Site est la société XXX, dont le siège social est situé
+        au XXX , avec le numéro de téléphone : _______________ + adresse mail de
+        contact
+      </p>
+      <h3>ARTICLE 3 - ACCES AU SITE</h3>
+      <p className="LegalNotices-websiteAccess">
+        Le Site est accessible en tout endroit, 7j/7, 24h/24 sauf cas de force
+        majeure, interruption programmée ou non et pouvant découlant d’une
+        nécessité de maintenance. En cas de modification, interruption ou
+        suspension du Site, l'Editeur ne saurait être tenu responsable.
+      </p>
+      <h3>ARTICLE 4 - COLLECTE DES DONNEES</h3>
+      <p className="LegalNotices-CollectData">
+        Le Site assure à l'Utilisateur une collecte et un traitement
+        d'informations personnelles dans le respect de la vie privée
+        conformément à la loi n°78-17 du 6 janvier 1978 relative à
+        l'informatique, aux fichiers et aux libertés. En vertu de la loi
+        Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur
+        dispose d'un droit d'accès, de rectification, de suppression et
+        d'opposition de ses données personnelles. L'Utilisateur exerce ce droit
+        · via son espace personnel ; Toute utilisation, reproduction, diffusion,
+        commercialisation, modification de toute ou partie du Site, sans
+        autorisation de l’Editeur est prohibée et pourra entraîner des actions
+        et poursuites judiciaires telles que notamment prévues par le Code de la
+        propriété intellectuelle et le Code civil.
       </p>
     </article>
   );
