@@ -1,15 +1,16 @@
 import logo from '../../assets/logo.svg';
 
-import './App.scss';
+import './HomePage.scss';
 
-function App() {
+function HomePage() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
         <p>
-          Edit <code>src/components/App/App.tsx</code> and save to reload.
+          Edit <code>src/components/HomePage/HomePage.tsx</code> and save to
+          reload.
         </p>
 
         <a
@@ -25,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
