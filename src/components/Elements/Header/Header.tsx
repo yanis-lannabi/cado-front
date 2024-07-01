@@ -3,7 +3,11 @@ import './Header.scss';
 function Header() {
   return (
     <header className="header">
-      <img src="logo.png" alt="Company Logo" className="logo" />
+      <img
+        src="../../../../public/MainLogo.png"
+        alt="Company Logo"
+        className="logo"
+      />
       <nav>
         <ul>
           <li>

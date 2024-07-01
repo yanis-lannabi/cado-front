@@ -1,28 +1,17 @@
-import logo from '../../assets/logo.svg';
+import logo from '../../../../public/MainLogo.png';
 
-import './App.scss';
+// import './HomePage.scss';
 
-function App() {
+function HomePage() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="HomePage">
+      <header className="HomePage-header">
+        <img src={logo} className="HomePage-logo" alt="logo" />
 
-        <p>
-          Edit <code>src/components/App/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://react.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          BLABLA
-        </a>
+        <p>HomePage en construction</p>
       </header>
     </div>
   );
 }
 
-export default App;
+export default HomePage;
