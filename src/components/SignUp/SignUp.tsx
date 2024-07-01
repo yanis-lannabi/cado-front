@@ -9,7 +9,6 @@ function SignUp() {
       <p>Prénom</p>
       <p>Adresse mail</p>
       <p>Mot de passe</p>
-
       <button>Créer mon compte</button>
     </div>
   );
