@@ -56,9 +56,7 @@ function CreateEvent() {
           <input type="text" placeholder="Budget maximum par cadeau" />
         </div>
 
-        <button className="create-event__validation-button">
-          Enregistrer les modifications
-        </button>
+        <button className="create-event__validation-button">Valider</button>
       </form>
     </div>
   );
