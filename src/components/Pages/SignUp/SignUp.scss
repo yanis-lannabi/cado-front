@@ -1,1 +1,34 @@
-@use '../../styles/variables' as v;
+// @use '../../styles/variables' as v;
+
+.SignUp {
+  text-align: center;
+}
+
+.SignUp__confirmation {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-bottom: 2.5rem;
+  width: 7.5%;
+  padding: 0.2rem 1.9rem;
+  border-radius: 0.2rem;
+  border: none;
+}
+
+.SignUp__title {
+  margin-left: 15rem;
+  margin-top: 3rem;
+  font-size: x-large;
+}
+
+.SignUp__email {
+  margin-bottom: 0.3rem;
+}
+
+.SignUp__password {
+  margin-bottom: 1.5rem;
+}
+
+.SignUp__newAccount {
+  margin-bottom: 1.25rem;
+}
