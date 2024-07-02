@@ -6,25 +6,26 @@ function SignUp() {
   return (
     <div className="WebsiteName">
       <header className="Website__title">
-        <h1>Création du compte</h1>
+        <h1>Organisez rapidement vos évènements</h1>
       </header>
       <div className="SignUp">
+        <h2>S'inscrire</h2>
         <form>
           <div className="SignUp__name">
-            Prénom
-            <input type="text" placeholder="Prénom" />
+            Nom :
+            <input type="text" placeholder="Nom" />
           </div>
           <div className="SignUp__email">
-            Adresse mail
+            Adresse email :
             <input type="email" placeholder="Adresse mail" />
           </div>
           <div className="SignUp__password">
-            Mot de passe
+            Mot de passe :
             <input type="password" placeholder="Mot de passe" />
           </div>
 
           <button className="SignUp__confirmation" type="submit">
-            Créer mon compte
+            S'inscrire
           </button>
         </form>
       </div>

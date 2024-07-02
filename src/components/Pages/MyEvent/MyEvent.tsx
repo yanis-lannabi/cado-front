@@ -14,9 +14,9 @@ function MyEvent() {
         <p>Evenements 3</p>
         <p>Evenements 4</p>
 
-        <h2>Nouvel évènements</h2>
-        <button className="MyEvent-confirmation" type="submit">
-          Créer un nouvel évènement
+        <h2>Nouvel évènement</h2>
+        <button className="MyEvent__confirmation" type="submit">
+          Créer un évènement
         </button>
       </div>
     </div>
