@@ -5,11 +5,11 @@ import './HomePage.scss';
 function HomePage() {
   return (
     <div className="home">
-      <h2 className="home__title">Bienvenue chez Cad'O</h2>
+      <h1 className="home__title">Bienvenue sur Cad'O</h1>
 
       <div className="home__container">
         <div className="home__concept-explaination">
-          <h3>Mais qu'est-ce que Cad'O ?</h3>
+          <h2>Mais qu'est-ce que Cad'O ?</h2>
           <p>
             Le concept du Secret Santa est un moyen de s’offrir des cadeaux de
             façon anonyme : à l’aide d’un tirage au sort, chaque participant se
@@ -18,9 +18,11 @@ function HomePage() {
             de celui qui lui offre.
             <br />
             <br />
-            Avec Cad'O, nous avons donc créé un outil qui permettra de faciliter
-            l'organisation de vos Secret Santa !
+            Chez Cad'O, nous avons créé et mis à dispositin un outil qui vous
+            permettra de faciliter l'organisation de vos Secret Santas !
           </p>
+          <h3> Créez votre évènement dès maintenant !</h3>
+          <button className="account-creation-button"> Créer mon compte</button>
         </div>
         <img className="home__image" src={homeImage} alt="" />
       </div>
