@@ -1,5 +1,19 @@
 // @use '../../styles/variables' as v;
 
+.MyEvent {
+  text-align: center;
+}
+
+.h2 {
+  margin: 2.5rem;
+}
+
+.Website__Title {
+  margin-left: 15rem;
+  margin-top: 3rem;
+  font-size: x-large;
+}
+
 .MyEvent-confirmation {
   display: flex;
   flex-direction: row;
