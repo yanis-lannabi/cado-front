@@ -13,6 +13,7 @@ h2 {
   width: 70%;
   border: 1px solid black;
   border-radius: 1rem;
+  background-color: #ffffff;
 
   &__element {
     display: flex;
@@ -43,6 +44,7 @@ h2 {
   }
 
   &__validation-button {
+    font-size: 1.5rem;
     margin: 1.5rem auto;
     margin-right: 1.5rem;
     padding: 0.2rem 1.9rem;
