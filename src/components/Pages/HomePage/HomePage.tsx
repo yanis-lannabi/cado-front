@@ -1,10 +1,12 @@
 import logo from '../../../../public/MainLogo.png';
-
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 import './HomePage.scss';
 
 function HomePage() {
   return (
     <div className="HomePage">
+      <Header />
       <header className="HomePage-header">
         <img src={logo} className="HomePage-logo" alt="logo" />
 
@@ -21,6 +23,7 @@ function HomePage() {
           BLABLA
         </a>
       </header>
+      <Footer />
     </div>
   );
 }

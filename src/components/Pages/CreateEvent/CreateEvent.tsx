@@ -1,8 +1,11 @@
 import './CreateEvent.scss';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 function CreateEvent() {
   return (
     <div className="create-event-page">
+      <Header />
       <h2>Créer mon évènement</h2>
 
       <form className="create-event">
@@ -58,6 +61,7 @@ function CreateEvent() {
 
         <button className="create-event__validation-button">Valider</button>
       </form>
+      <Footer />
     </div>
   );
 }

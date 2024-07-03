@@ -1,8 +1,11 @@
 import './MyEvent.scss';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 function MyEvent() {
   return (
     <div className="MyEvent">
+      <Header />
       <header className="MyEvent-header">
         <h1>Mes évènements</h1>
       </header>
@@ -14,6 +17,7 @@ function MyEvent() {
 
       <h2>Nouvel évènements</h2>
       <button>Créer un nouvel évènement</button>
+      <Footer />
     </div>
   );
 }

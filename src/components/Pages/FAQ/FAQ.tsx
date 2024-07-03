@@ -1,8 +1,11 @@
 import './FAQ.scss';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 function FAQ() {
   return (
     <article className="FAQ">
+      <Header />
       <h2 className="FAQ-title">FOIRE AUX QUESTIONS :</h2>
       <div className="FAQ-category">
         <h3> Qu'est-ce que Secret Santa?</h3>
@@ -37,6 +40,7 @@ function FAQ() {
         </p>
       </div>
       <p className="imageFAQ">IMAGE A AJOUTER</p>
+      <Footer />
     </article>
   );
 }

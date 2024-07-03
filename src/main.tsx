@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/resultat" element={<DrawResult />} />
         <Route path="/details-evenement" element={<EventDetails />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/accueil" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
         <Route path="/mon-compte" element={<MyAccount />} />
         <Route path="/mes-evenements" element={<MyEvent />} />
