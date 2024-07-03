@@ -23,7 +23,7 @@
     "markdown": "html",
     "ejs": "html"
   },
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vs-seti",
   "cSpell.words": [
     "airbnb"
   ]

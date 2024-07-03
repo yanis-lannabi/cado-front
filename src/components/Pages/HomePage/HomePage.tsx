@@ -1,6 +1,6 @@
 import logo from '../../../../public/MainLogo.png';
 
-import './App.scss';
+import './HomePage.scss';
 
 function HomePage() {
   return (
