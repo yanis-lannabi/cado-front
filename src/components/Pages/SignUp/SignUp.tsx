@@ -8,6 +8,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signUpStatus, setSignUpStatus] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,14 +25,15 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
-          console.log('Sign up successful!');
+        if (data.name && data.email && data.password) {
+          setSignUpStatus('Inscription réussie !');
         } else {
-          console.log('Sign up failed:', data.error);
+          setSignUpStatus("Échec de l'inscription : Données manquantes");
         }
       })
       .catch((error) => {
         console.log('Error:', error);
+        setSignUpStatus("Échec de l'inscription : une erreur est survenue");
       });
   };
 
@@ -60,7 +62,7 @@ function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Mot de passe:</label>
           <input
             className="SignUp__password"
             type="password"
@@ -68,6 +70,7 @@ function SignUp() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {signUpStatus && <p>{signUpStatus}</p>}
 
           <button className="SignUp__confirmation" type="submit">
             S'inscrire
