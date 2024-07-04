@@ -1,0 +1,60 @@
+.WebsiteName {
+  background-color: #f5f5dc; /* Beige */
+  color: #000; /* Black */
+  font-family: Arial, sans-serif;
+}
+
+.Login {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffd700; /* Gold */
+  border-radius: 10px;
+}
+
+.Login h2 {
+  text-align: center;
+  color: #000; /* Black */
+}
+
+.Login__errorMessage,
+.Login__emailError,
+.Login__passwordError {
+  color: #ff0000; /* Red */
+  margin-bottom: 10px;
+}
+
+.Login__email,
+.Login__password {
+  margin-bottom: 10px;
+}
+
+.Login__email input,
+.Login__password input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.Login__confirmation,
+.Login__createAccount {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000; /* Black */
+  color: #ffd700; /* Gold */
+  cursor: pointer;
+}
+
+.Login__confirmation:hover,
+.Login__createAccount:hover {
+  background-color: #f5f5dc; /* Beige */
+  color: #000; /* Black */
+}
+
+.Login__newAccount {
+  text-align: center;
+  margin: 20px 0;
+}

@@ -11,7 +11,7 @@ import EventDetails from './components/Pages/EventDetails/EventDetails';
 import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
-import MyAccount from './components/Pages/MyAccount/MyAccount';
+import MyAccount from './components/Pages/MyAccount/MyAccountStatique';
 import MyEvent from './components/Pages/MyEvent/MyEvent';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
 
