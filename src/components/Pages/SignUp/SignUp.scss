@@ -1,1 +1,46 @@
-@use '../../styles/variables' as v;
+// @use '../../styles/variables' as v;
+
+.SignUp {
+  text-align: center;
+  border: solid black 0.1rem;
+}
+
+h2 {
+  margin: 2.5rem;
+}
+.SignUp__confirmation {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-bottom: 2.5rem;
+  width: 7.5%;
+  padding: 0.2rem 2.5rem;
+  border-radius: 0.2rem;
+  border: none;
+
+  background: #000000;
+  color: #dfdedf;
+}
+
+.Website__title {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+
+.SignUp__name {
+  margin-bottom: 0.3rem;
+  margin-left: 4rem;
+}
+
+.SignUp__email {
+  margin-bottom: 0.3rem;
+}
+
+.SignUp__password {
+  margin-bottom: 1.5rem;
+}
+
+.SignUp__newAccount {
+  margin-bottom: 1.25rem;
+}
