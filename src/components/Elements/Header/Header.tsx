@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import logo from '../../../../public/MainLogo.png';
+import logo from '../../../assets/MainLogo.png';
 import './Header.scss';
 
 const Header: React.FC = () => {

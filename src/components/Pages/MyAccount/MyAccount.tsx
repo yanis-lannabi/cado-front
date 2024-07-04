@@ -9,23 +9,49 @@ import Footer from '../../Elements/Footer/Footer';
 interface User {
   nom: string;
   dateInscription: string;
-  nombreEvenements: number; // Number of events the user has organized
+  nombreEvenements: number;
 }
 
-// Initialize user state to null
 const MyAccount: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch user data when the component mounts
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/posts'
+      );
+      const data = await response.json();
+
+      if (
+        'nom' in data &&
+        'dateInscription' in data &&
+        'nombreEvenements' in data
+      ) {
+        setUser(data);
+      } else {
+        throw new Error('Invalid user data');
+      }
+    } catch (error: any) {
+      setError(error.message);
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    // Remplacer par l'URL de notre API
-    fetch('https://your-api-url.com/user')
-      .then((response) => response.json())
-      .then((data) => setUser(data))
-      .catch((error) => console.error(error));
+    fetchUserData();
   }, []);
 
-  // If the user data is not yet loaded, display a loading message
+  if (error) {
+    return (
+      <div>
+        <Header />
+        <p className="ErrorMessage">Une erreur est survenue : {error}</p>
+        <Footer />
+      </div>
+    );
+  }
+
   if (!user) {
     return (
       <div>
@@ -36,7 +62,6 @@ const MyAccount: React.FC = () => {
     );
   }
 
-  // Render the user data
   return (
     <div className="MyAccount">
       <Header />
@@ -69,5 +94,4 @@ const MyAccount: React.FC = () => {
   );
 };
 
-// Exporting the MyAccount component for use in other files
 export default MyAccount;

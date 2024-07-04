@@ -1,6 +1,6 @@
 // Importing styles specific to this component
 import './Login.scss';
-//import './LoginTEST.scss';
+
 // Importing Header and Footer components
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
@@ -48,13 +48,16 @@ function Login() {
     }
     try {
       // Attempt to log in by sending a POST request to the API
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/posts',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       // If the response is not OK, throw an error
       if (!response.ok) {
@@ -85,7 +88,7 @@ function Login() {
         {passwordError && (
           <div className="Login__passwordError">{passwordError}</div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="Login__email">
             <input
               type="email"
@@ -106,7 +109,7 @@ function Login() {
               required
             />
           </div>
-          <button className="Login__confirmation" type="submit">
+          <button className="Login__confirmation" onSubmit={handleSubmit}>
             Continuer
           </button>
         </form>

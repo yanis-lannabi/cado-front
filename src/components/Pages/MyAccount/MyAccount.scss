@@ -28,9 +28,23 @@ h2 {
   padding-left: 1.1rem;
   border-radius: 0.5rem;
   border: none;
-
   background: #000000;
   color: #dfdedf;
+}
+
+.MyAccount__personalData {
+  position: fixed;
+  top: 10rem;
+}
+
+.MyAccount__MyEvents {
+  position: fixed;
+  top: 15rem;
+}
+
+.MyAccount__CreateEvent {
+  position: fixed;
+  top: 20rem;
 }
 
 .MyAccount__MyEvents {

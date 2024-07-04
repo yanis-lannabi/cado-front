@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react';
 
 function Login() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [zipcode, setzipcode] = useState('');
   // Initializes the errors state with an empty string.
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [zipcodeError, setzipcodeError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -25,27 +25,30 @@ function Login() {
       setEmailError('');
     }
 
-    if (password && password.length < 7) {
-      setPasswordError('Le mot de passe doit être supérieur à 7 caractères');
+    if (zipcode && zipcode.length < 7) {
+      setzipcodeError('Le mot de passe doit être supérieur à 7 caractères');
     } else {
-      setPasswordError('Entrez un mot de passe');
+      setzipcodeError('Entrez un mot de passe');
     }
-  }, [email, password]);
+  }, [email, zipcode]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (emailError || passwordError) {
+    if (emailError || zipcodeError) {
       return;
     }
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, zipcode }),
+        }
+      );
 
       if (!response.ok) {
         // If the status if different from 200, it means that an error occured.
@@ -75,8 +78,8 @@ function Login() {
           <div className="Login__errorMessage">{errorMessage}</div>
         )}
         {emailError && <div className="Login__emailError">{emailError}</div>}
-        {passwordError && (
-          <div className="Login__passwordError">{passwordError}</div>
+        {zipcodeError && (
+          <div className="Login__zipcodeError">{zipcodeError}</div>
         )}
         <form onSubmit={handleSubmit}>
           <div className="Login__email">
@@ -89,13 +92,13 @@ function Login() {
               required
             />
           </div>
-          <div className="Login__password">
+          <div className="Login__zipcode">
             <input
-              type="password"
-              placeholder="password"
-              value={password}
-              //Updates the password state with the user's input.
-              onChange={(e) => setPassword(e.target.value)}
+              type="zipcode"
+              placeholder="zipcode"
+              value={zipcode}
+              //Updates the zipcode state with the user's input.
+              onChange={(e) => setzipcode(e.target.value)}
               required
             />
           </div>
