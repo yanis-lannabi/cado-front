@@ -2,28 +2,28 @@ import { useState } from 'react';
 import './CreateEvent.scss';
 
 // Fictive participants list, in order to test the form
-const participants = [
-  {
-    name: 'Bob',
-    email: 'bobby@bobby.fr',
-  },
-  {
-    name: 'Michel',
-    email: 'michou@michel.fr',
-  },
-  {
-    name: 'Roberto',
-    email: 'Rob@roberto.fr',
-  },
-  {
-    name: 'Mcikey',
-    email: 'mickey@mickey.fr',
-  },
-  {
-    name: 'Shakira',
-    email: 'shaki@shaki.fr',
-  },
-];
+// const participants = [
+//   {
+//     name: 'Bob',
+//     email: 'bobby@bobby.fr',
+//   },
+//   {
+//     name: 'Michel',
+//     email: 'michou@michel.fr',
+//   },
+//   {
+//     name: 'Roberto',
+//     email: 'Rob@roberto.fr',
+//   },
+//   {
+//     name: 'Mcikey',
+//     email: 'mickey@mickey.fr',
+//   },
+//   {
+//     name: 'Shakira',
+//     email: 'shaki@shaki.fr',
+//   },
+// ];
 
 function CreateEvent() {
   const [eventName, setEventName] = useState('');
@@ -32,29 +32,18 @@ function CreateEvent() {
   const [participant, setParticipant] = useState([{ name: '', email: '' }]);
   const [giftBudget, setGiftBudget] = useState('');
 
-  // const handleAddParticipant = (e) => {
-  //   e.preventDefault();
+  const handleAddParticipant = () => {
+    setParticipant([...participant, { name: '', email: '' }]);
+  };
 
-  //   return (
-  //     <div className="create-event__participant">
-  //       <input
-  //         type="text"
-  //         id="participantName"
-  //         placeholder="Nom du participant"
-  //       />
-  //       <input
-  //         type="email"
-  //         id="participantEmail"
-  //         placeholder="E-mail du participant"
-  //       />
-  //     </div>
-  //   );
-  // };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!eventName || !eventDate || !participant) {
+    if (
+      !eventName ||
+      !eventDate ||
+      participant.some((p) => !p.name || !p.email)
+    ) {
       alert('Veuillez remplir tous les champs obligatoires');
       return;
     } else {
@@ -80,7 +69,9 @@ function CreateEvent() {
 
       <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">
-          <label htmlFor="eventName">* Nom de l'évènement :</label>
+          <label htmlFor="eventName" className="create-event__element-title">
+            * Nom de l'évènement :
+          </label>
           <input
             type="text"
             id="eventName"
@@ -91,7 +82,9 @@ function CreateEvent() {
         </div>
 
         <div className="create-event__element">
-          <label htmlFor="eventDate">* Date de l'évènement :</label>
+          <label htmlFor="eventDate" className="create-event__element-title">
+            * Date de l'évènement :
+          </label>
           <input
             type="date"
             id="eventDate"
@@ -100,7 +93,12 @@ function CreateEvent() {
           />
         </div>
         <div className="create-event__element">
-          <label htmlFor="eventDescription">Description :</label>
+          <label
+            htmlFor="eventDescription"
+            className="create-event__element-title"
+          >
+            Description :
+          </label>
           <input
             type="text"
             id="eventDescription"
@@ -110,32 +108,44 @@ function CreateEvent() {
           />
         </div>
         <div className="create-event__element">
-          <label htmlFor="participants">* Participants :</label>
+          <label htmlFor="participants" className="create-event__element-title">
+            * Participants :
+          </label>
 
           <div className="create-event__participants">
-            <div className="create-event__participant">
-              <input
-                type="text"
-                id="participantName"
-                placeholder="Nom du participant"
-              />
-              <input
-                type="email"
-                id="participantEmail"
-                placeholder="E-mail du participant"
-              />
-            </div>
+            {participant.map((p, i) => (
+              <div key={i} className="create-event__participant">
+                <input
+                  type="text"
+                  placeholder="Nom du participant"
+                  value={p.name}
+                  // onChange={(e) =>
+                  //   handleParticipantChange(i, 'name', e.target.value)
+                  // }
+                />
+                <input
+                  type="email"
+                  placeholder="E-mail du participant"
+                  value={p.email}
+                  // onChange={(e) =>
+                  //   handleParticipantChange(i, 'email', e.target.value)
+                  // }
+                />
+              </div>
+            ))}
 
             <input
               type="button"
               value="+"
               className="create-event__participants__add-button"
-              // onClick={handleAddParticipant}
+              onClick={handleAddParticipant}
             />
           </div>
         </div>
-        <div className="create-event__element">
-          <label htmlFor="giftBudget">Budget (en euros) :</label>
+        <div className="create-event__element ">
+          <label htmlFor="giftBudget" className="create-event__element-title">
+            Budget (en euros) :
+          </label>
           <input
             type="number"
             id="giftBudget"
@@ -153,7 +163,6 @@ function CreateEvent() {
           type="submit"
           className="create-event__validation-button"
           value="Valider"
-          onSubmit={handleSubmit}
         />
       </form>
     </div>

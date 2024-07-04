@@ -23,6 +23,12 @@ h1 {
     margin: 1rem 1rem;
   }
 
+  &__element-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
   &__participants {
     display: flex;
     flex-direction: column;
