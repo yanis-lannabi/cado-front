@@ -29,41 +29,58 @@ function CreateEvent() {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventDescription, setEventDescription] = useState('');
-  const [participant, setParticipant] = useState([]);
+  const [participant, setParticipant] = useState([{ name: '', email: '' }]);
   const [giftBudget, setGiftBudget] = useState('');
 
-  const addParticipantLine = (e) => {
-    e.preventDefault();
-    return (
-      <div className="create-event__element">
-        <input type="text" id="participant" placeholder="Participant" />
-      </div>
-    );
-  };
+  // const handleAddParticipant = (e) => {
+  //   e.preventDefault();
+
+  //   return (
+  //     <div className="create-event__participant">
+  //       <input
+  //         type="text"
+  //         id="participantName"
+  //         placeholder="Nom du participant"
+  //       />
+  //       <input
+  //         type="email"
+  //         id="participantEmail"
+  //         placeholder="E-mail du participant"
+  //       />
+  //     </div>
+  //   );
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!eventName && !eventDate && !participant) {
+    if (!eventName || !eventDate || !participant) {
       alert('Veuillez remplir tous les champs obligatoires');
       return;
+    } else {
+      console.log(
+        eventName,
+        eventDate,
+        eventDescription,
+        participant,
+        giftBudget
+      );
     }
-    alert(`Youhou ! Votre évènement "${eventName}" a bien été créé ! :)`);
 
     setEventName('');
     setEventDate('');
     setEventDescription('');
-    setParticipant([]);
+    setParticipant([{ name: '', email: '' }]);
     setGiftBudget('');
   };
 
   return (
     <div className="create-event-page">
-      <h2>Créer mon évènement</h2>
+      <h1>Créer mon évènement</h1>
 
-      <form className="create-event">
+      <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">
-          <h3>* Nom de l'évènement :</h3>
+          <label htmlFor="eventName">* Nom de l'évènement :</label>
           <input
             type="text"
             id="eventName"
@@ -74,7 +91,7 @@ function CreateEvent() {
         </div>
 
         <div className="create-event__element">
-          <h3>* Date de l'évènement :</h3>
+          <label htmlFor="eventDate">* Date de l'évènement :</label>
           <input
             type="date"
             id="eventDate"
@@ -83,7 +100,7 @@ function CreateEvent() {
           />
         </div>
         <div className="create-event__element">
-          <h3>Description :</h3>
+          <label htmlFor="eventDescription">Description :</label>
           <input
             type="text"
             id="eventDescription"
@@ -93,7 +110,7 @@ function CreateEvent() {
           />
         </div>
         <div className="create-event__element">
-          <h3>* Participants :</h3>
+          <label htmlFor="participants">* Participants :</label>
 
           <div className="create-event__participants">
             <div className="create-event__participant">
@@ -109,21 +126,22 @@ function CreateEvent() {
               />
             </div>
 
-            <button
+            <input
+              type="button"
+              value="+"
               className="create-event__participants__add-button"
-              onClick={addParticipantLine}
-            >
-              +
-            </button>
+              // onClick={handleAddParticipant}
+            />
           </div>
         </div>
         <div className="create-event__element">
-          <h3>Budget :</h3>
+          <label htmlFor="giftBudget">Budget (en euros) :</label>
           <input
             type="number"
             id="giftBudget"
             value={giftBudget}
             placeholder="Budget maximum par cadeau"
+            onChange={(e) => setGiftBudget(e.target.value)}
           />
         </div>
 
@@ -131,13 +149,12 @@ function CreateEvent() {
           * Les champs avec une astérisque sont obligatoires
         </p>
 
-        <button
+        <input
           type="submit"
           className="create-event__validation-button"
+          value="Valider"
           onSubmit={handleSubmit}
-        >
-          Valider
-        </button>
+        />
       </form>
     </div>
   );
