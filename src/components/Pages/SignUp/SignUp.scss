@@ -3,6 +3,13 @@
 .SignUp {
   text-align: center;
   border: solid black 0.1rem;
+  width: 700px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 h2 {
@@ -13,7 +20,8 @@ h2 {
   flex-direction: row;
   margin: auto;
   margin-bottom: 2.5rem;
-  width: 7.5%;
+  margin-top: 2.5rem;
+  width: auto;
   padding: 0.2rem 2.5rem;
   border-radius: 0.2rem;
   border: none;
@@ -28,18 +36,23 @@ h2 {
   margin-bottom: 5rem;
 }
 
-.SignUp__name {
-  margin-bottom: 0.3rem;
+.SignUp__newAccount {
+  margin-bottom: 1.25rem;
 }
 
-.SignUp__email {
-  margin-bottom: 0.3rem;
+.SignUp__name,
+.SignUp__email,
+.SignUp__password {
+  display: block;
+  width: 105%;
+  margin: 0 auto 0.3rem auto;
+
+  // Styles communs pour les champs d'entrée
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #ccc;
 }
 
 .SignUp__password {
   margin-bottom: 1.5rem;
-}
-
-.SignUp__newAccount {
-  margin-bottom: 1.25rem;
 }

@@ -49,13 +49,14 @@ function SignUp() {
         <h1>Organisez rapidement vos évènements</h1>
       </header>
       <div className="SignUp">
-        <h2>S&apos;inscrire</h2>
+        <h2>Inscription</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Nom:</label>
           <input
             className="SignUp__name"
             type="text"
             id="name"
+            placeholder="Entrez votre nom"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -64,6 +65,7 @@ function SignUp() {
             className="SignUp__email"
             type="email"
             id="email"
+            placeholder="Entrez votre email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -73,6 +75,7 @@ function SignUp() {
             className="SignUp__password"
             type="password"
             id="password"
+            placeholder="Entrez votre mot de passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
