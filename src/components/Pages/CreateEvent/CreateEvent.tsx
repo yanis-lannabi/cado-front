@@ -1,70 +1,62 @@
 import { useState } from 'react';
 import './CreateEvent.scss';
 
-// Fictive participants list, in order to test the form
-// const participants = [
-//   {
-//     name: 'Bob',
-//     email: 'bobby@bobby.fr',
-//   },
-//   {
-//     name: 'Michel',
-//     email: 'michou@michel.fr',
-//   },
-//   {
-//     name: 'Roberto',
-//     email: 'Rob@roberto.fr',
-//   },
-//   {
-//     name: 'Mcikey',
-//     email: 'mickey@mickey.fr',
-//   },
-//   {
-//     name: 'Shakira',
-//     email: 'shaki@shaki.fr',
-//   },
-// ];
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 function CreateEvent() {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventDescription, setEventDescription] = useState('');
-  const [participant, setParticipant] = useState([{ name: '', email: '' }]);
+  const [participants, setParticipants] = useState([{ name: '', email: '' }]);
   const [giftBudget, setGiftBudget] = useState('');
 
   const handleAddParticipant = () => {
-    setParticipant([...participant, { name: '', email: '' }]);
+    setParticipants([...participants, { name: '', email: '' }]);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      !eventName ||
-      !eventDate ||
-      participant.some((p) => !p.name || !p.email)
-    ) {
-      alert('Veuillez remplir tous les champs obligatoires');
-      return;
-    } else {
-      console.log(
-        eventName,
-        eventDate,
-        eventDescription,
-        participant,
-        giftBudget
-      );
-    }
+    try {
+      if (
+        !eventName ||
+        !eventDate ||
+        participants.some(
+          (participant) => !participant.name || !participant.email
+        )
+      ) {
+        throw new Error('Veuillez remplir tous les champs obligatoires');
+      } else {
+        const response = await fetch('http://165.227.232.51:3000/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            eventName,
+            eventDate,
+            eventDescription,
+            participants,
+            giftBudget,
+          }),
+        });
 
-    setEventName('');
-    setEventDate('');
-    setEventDescription('');
-    setParticipant([{ name: '', email: '' }]);
-    setGiftBudget('');
+        if (!response.ok) {
+          throw new Error("Erreur lors de la création de l'événement");
+        }
+
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="create-event-page">
+      <Header />
       <h1>Créer mon évènement</h1>
 
       <form className="create-event" onSubmit={handleSubmit}>
@@ -113,23 +105,27 @@ function CreateEvent() {
           </label>
 
           <div className="create-event__participants">
-            {participant.map((p, i) => (
+            {participants.map((participant, i) => (
               <div key={i} className="create-event__participant">
                 <input
                   type="text"
                   placeholder="Nom du participant"
-                  value={p.name}
-                  // onChange={(e) =>
-                  //   handleParticipantChange(i, 'name', e.target.value)
-                  // }
+                  value={participant.name}
+                  onChange={(e) => {
+                    const newParticipants = [...participants];
+                    newParticipants[i].name = e.target.value;
+                    setParticipants(newParticipants);
+                  }}
                 />
                 <input
                   type="email"
                   placeholder="E-mail du participant"
-                  value={p.email}
-                  // onChange={(e) =>
-                  //   handleParticipantChange(i, 'email', e.target.value)
-                  // }
+                  value={participant.email}
+                  onChange={(e) => {
+                    const newParticipants = [...participants];
+                    newParticipants[i].email = e.target.value;
+                    setParticipants(newParticipants);
+                  }}
                 />
               </div>
             ))}
@@ -165,6 +161,8 @@ function CreateEvent() {
           value="Valider"
         />
       </form>
+
+      <Footer />
     </div>
   );
 }
