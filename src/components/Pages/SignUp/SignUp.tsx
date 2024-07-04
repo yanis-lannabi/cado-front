@@ -49,7 +49,7 @@ function SignUp() {
         <h1>Organisez rapidement vos évènements</h1>
       </header>
       <div className="SignUp">
-        <h2>S'inscrire</h2>
+        <h2>S&apos;inscrire</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Nom:</label>
           <input
@@ -79,7 +79,7 @@ function SignUp() {
           {signUpStatus && <p>{signUpStatus}</p>}
 
           <button className="SignUp__confirmation" type="submit">
-            S'inscrire
+            S&apos;inscrire
           </button>
         </form>
       </div>
