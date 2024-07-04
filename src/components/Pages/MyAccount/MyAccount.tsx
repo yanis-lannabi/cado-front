@@ -9,39 +9,43 @@ import Footer from '../../Elements/Footer/Footer';
 interface User {
   nom: string;
   dateInscription: string;
-  nombreEvenements: number;
+  nombreEvenements: number; // Number of events user has organized
 }
 
 const MyAccount: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null); // State for storing user data
+  const [error, setError] = useState<string | null>(null); // State for storing any error messages
 
+  // Function to fetch user data from an API
   const fetchUserData = async () => {
     try {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/posts'
-      );
-      const data = await response.json();
+      ); // Fetching data from API
+      const data = await response.json(); // Parsing response to JSON
 
+      // Checking if the necessary data is present in the response
       if (
         'nom' in data &&
         'dateInscription' in data &&
         'nombreEvenements' in data
       ) {
-        setUser(data);
+        setUser(data); // Setting user data
       } else {
         throw new Error('Invalid user data');
       }
     } catch (error: any) {
-      setError(error.message);
+      setError(error.message); // Setting error message if any error occurs
       console.error(error);
     }
   };
 
+  // Using useEffect to call fetchUserData when the component mounts
   useEffect(() => {
     fetchUserData();
   }, []);
 
+  // If there's an error, render error message
   if (error) {
     return (
       <div>
@@ -52,6 +56,7 @@ const MyAccount: React.FC = () => {
     );
   }
 
+  // If user data is not yet loaded, render loading message
   if (!user) {
     return (
       <div>
@@ -62,6 +67,7 @@ const MyAccount: React.FC = () => {
     );
   }
 
+  // If user data is loaded, render user data
   return (
     <div className="MyAccount">
       <Header />
