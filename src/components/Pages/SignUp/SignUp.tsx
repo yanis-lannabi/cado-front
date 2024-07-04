@@ -14,23 +14,25 @@ function SignUp() {
     console.log('name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
-    // Perform signup logic here
-    // You can make an API call here to submit the form data to the server
-    // For example:
-    // fetch('/api/signup', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ email, password }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   // Handle the response from the server
-    // })
-    // .catch(error => {
-    //   // Handle any errors that occur during the API call
-    // });
+    // API call
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log('Sign up successful!');
+        } else {
+          console.log('Sign up failed:', data.error);
+        }
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
   };
 
   return (
