@@ -27,6 +27,9 @@ function SignUp() {
       .then((data) => {
         if (data.name && data.email && data.password) {
           setSignUpStatus('Inscription réussie !');
+          setName('');
+          setEmail('');
+          setPassword('');
         } else {
           setSignUpStatus("Échec de l'inscription : Données manquantes");
         }
@@ -34,6 +37,9 @@ function SignUp() {
       .catch((error) => {
         console.log('Error:', error);
         setSignUpStatus("Échec de l'inscription : une erreur est survenue");
+        setName('');
+        setEmail('');
+        setPassword('');
       });
   };
 
