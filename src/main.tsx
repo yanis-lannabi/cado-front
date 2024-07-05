@@ -11,7 +11,7 @@ import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
 import MyAccount from './components/Pages/MyAccount/MyAccount';
-import MyEvent from './components/Pages/MyEvent/MyEvent';
+import MyEvents from './components/Pages/MyEvents/MyEvents';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
 
 // import 'semantic-ui-css/semantic.min.css';
