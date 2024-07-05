@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable no-console */
 import './SignUp.scss';
 import React, { useState } from 'react';
@@ -86,6 +87,24 @@ function SignUp() {
           </button>
         </form>
       </div>
+=======
+import './SignUp.scss';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
+
+function SignUp() {
+  return (
+    <div className="SignUp">
+      <Header />
+      <header className="SignUp-header">
+        <h1>Création du compte</h1>
+      </header>
+      <p>Prénom</p>
+      <p>Adresse mail</p>
+      <p>Mot de passe</p>
+      <button>Créer mon compte</button>
+      <Footer />
+>>>>>>> parent of cf1c317... update feature/faq2
     </div>
   );
 }

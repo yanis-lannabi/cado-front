@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from './components/Pages/Login/Login';
