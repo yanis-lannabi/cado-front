@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   ) {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Connection</button>
+        <button onClick={() => navigate('/se-connecter')}>Connexion</button>
       </div>
     );
   } else if (
@@ -29,13 +29,13 @@ const Header: React.FC = () => {
     buttons = (
       <div>
         <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
       </div>
     );
   } else if (location.pathname === '/se-connecter') {
@@ -44,10 +44,8 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-
       <img src={logo} alt="Logo" className="logo" />
       {buttons}
-
     </header>
   );
 };

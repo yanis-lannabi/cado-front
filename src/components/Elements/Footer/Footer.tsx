@@ -8,8 +8,8 @@ const Footer: React.FC = () => {
       <div>
         <Link to="/mentions-legales">Mentions légales</Link>
         <Link to="/faq">FAQ</Link>
+        <div>© 2024</div>
       </div>
-      <div>Version du site</div>
     </footer>
   );
 };

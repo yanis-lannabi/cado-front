@@ -1,10 +1,14 @@
 import homeImage from '../../../../public/FavIcon.png';
+import { Link } from 'react-router-dom';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 import './HomePage.scss';
 
 function HomePage() {
   return (
     <div className="home">
+      <Header />
       <h1 className="home__title">Bienvenue sur Cad'O</h1>
 
       <div className="home__container">
@@ -22,10 +26,14 @@ function HomePage() {
             permettra de faciliter l'organisation de vos Secret Santas !
           </p>
           <h3> Créez votre évènement dès maintenant !</h3>
-          <button className="account-creation-button"> Créer mon compte</button>
+          <button className="account-creation-button">
+            <Link to="/se-connecter">Créer mon compte</Link>
+          </button>
         </div>
         <img className="home__image" src={homeImage} alt="" />
       </div>
+
+      <Footer />
     </div>
   );
 }

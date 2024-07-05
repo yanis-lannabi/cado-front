@@ -3,9 +3,6 @@ import './CreateEvent.scss';
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
-
 function CreateEvent() {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
