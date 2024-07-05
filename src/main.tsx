@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
         <Route path="/mon-compte" element={<MyAccount />} />
-        <Route path="/mes-evenements" element={<MyEvent />} />
+        <Route path="/mes-evenements" element={<MyEvents />} />
         <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
       </Routes>
     </Router>
