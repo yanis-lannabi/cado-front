@@ -44,8 +44,10 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
+
       <img src={logo} alt="Logo" className="logo" />
       {buttons}
+
     </header>
   );
 };
