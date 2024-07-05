@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './CreateEvent.scss';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
@@ -57,7 +59,8 @@ function CreateEvent() {
   return (
     <div className="create-event-page">
       <Header />
-      <h1>Créer mon évènement</h1>
+
+      <h2>Créer mon évènement</h2>
 
       <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">

@@ -1,8 +1,12 @@
 import './MyAccount.scss';
 
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
+
 function MyAccount() {
   return (
     <div className="MyAccount">
+      <Header />
       <header className="MyAccount-title">
         <h1>Mon compte</h1>
       </header>
@@ -23,6 +27,7 @@ function MyAccount() {
           Nouvel évènement
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

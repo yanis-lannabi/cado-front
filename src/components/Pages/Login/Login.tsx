@@ -1,6 +1,4 @@
 import './Login.scss';
-//import Header from './.../Element/Header/Header';
-//import Footer from './.../Element/Footer/Footer';
 
 function Login() {
   return (
