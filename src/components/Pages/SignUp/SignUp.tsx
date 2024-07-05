@@ -16,7 +16,7 @@ function SignUp() {
     console.log('Email:', email);
     console.log('Password:', password);
     // API call
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+    fetch('http://165.227.232.51:3000/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: {
