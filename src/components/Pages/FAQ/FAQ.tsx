@@ -1,4 +1,3 @@
-import React from 'react';
 import './FAQ.scss';
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';

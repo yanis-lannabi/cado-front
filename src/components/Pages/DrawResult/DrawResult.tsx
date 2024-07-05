@@ -1,29 +1,19 @@
-import { useState } from 'react';
 import './DrawResult.scss';
-
-// fictive list of participants to test the feature
-const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar'];
-
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 function DrawResult() {
-  const [result, setResult] = useState('');
-
-  const handleDraw = () => {
-    const randomIndex = Math.floor(Math.random() * participants.length);
-    setResult(participants[randomIndex]);
-  };
-
   return (
     <div className="draw-result-page">
+      <Header />
       <h2>Bienvenue (prénom) !</h2>
       <p> La personne à qui tu devras offrir un cadeau est...</p>
-      <button className="draw-button" onClick={handleDraw}>
+      <button className="draw-button"> Clique ici !</button>
+      <p className="draw-result"> Shakira </p>
+      <a className="event-link" href="">
         {' '}
-        Clique ici !
-      </button>
-      {result && <p className="draw-result"> {result} </p>}
-      <a className="event-link" href="/details-evenement">
-        Voir le détail de l'évènement
+        Voir le détail de l'évènement{' '}
       </a>
+      <Footer />
     </div>
   );
 }

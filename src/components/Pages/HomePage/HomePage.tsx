@@ -1,16 +1,14 @@
 import homeImage from '../../../../public/FavIcon.png';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 import './HomePage.scss';
 
 function HomePage() {
   return (
     <div className="home">
-      <Header />
-      <h1 className="home__title">Bienvenue sur Cad'O</h1>
-      <div className="home__container">
-        <div className="home__concept-explaination">
+      <h1 className="hometitle">Bienvenue sur Cad'O</h1>
+
+      <div className="homecontainer">
+        <div className="homeconcept-explaination">
           <h2>Mais qu'est-ce que Cad'O ?</h2>
           <p>
             Le concept du Secret Santa est un moyen de s’offrir des cadeaux de
@@ -26,9 +24,8 @@ function HomePage() {
           <h3> Créez votre évènement dès maintenant !</h3>
           <button className="account-creation-button"> Créer mon compte</button>
         </div>
-        <img className="home__image" src={homeImage} alt="" />
+        <img className="homeimage" src={homeImage} alt="" />
       </div>
-      <Footer />
     </div>
   );
 }
