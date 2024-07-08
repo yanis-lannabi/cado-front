@@ -28,26 +28,28 @@ h2 {
 
 .Login__confirmation {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   margin: auto;
   margin-bottom: 2.5rem;
   width: 7.5%;
-  border-radius: 0.5rem;
+  padding: 0.2rem 1.9rem;
+  border-radius: 0.2rem;
   border: none;
+
   background: #000000;
   color: #dfdedf;
 }
 
 .Login__createAccount {
   display: flex;
-  justify-content: center;
   flex-direction: row;
   margin: auto;
   margin-bottom: 2.5rem;
   width: 7.5%;
-  border-radius: 0.5rem;
+  padding: 0.2rem 2rem;
+  border-radius: 0.2rem;
   border: none;
+
   background: #000000;
   color: #dfdedf;
 }
