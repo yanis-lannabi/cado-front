@@ -14,7 +14,6 @@ function Login() {
   const [password, setPassword] = useState('');
   // Initializing states for email, password, and errors
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
@@ -30,24 +29,18 @@ function Login() {
     } else {
       setEmailError('');
     }
-    // Checking the length of the password
-    if (password && password.length < 7) {
-      setPasswordError('Le mot de passe doit être supérieur à 7 caractères');
-    } else {
-      setPasswordError('Entrez un mot de passe');
-    }
-  }, [email, password]);
+  }, [email]);
 
   // Function to handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // If there are errors, stop execution
-    if (emailError || passwordError) {
+    if (emailError) {
       return;
     }
     try {
       // Attempt to log in by sending a POST request to the API
-      const response = await fetch('http://165.227.232.51:3000/auth/login/', {
+      const response = await fetch('http://165.227.232.51:3000/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,11 +48,21 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
 
-      // If the response is not OK, throw an error
+      console.log(JSON.stringify({ email, password }));
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Erreur lors de la connexion');
+        if (response.headers.get('Content-Type').includes('application/json')) {
+          const errorData = await response.json();
+          console.log(errorData);
+        } else {
+          console.log(await response.text());
+        }
+        throw new Error('Network response was not ok');
       }
+
+      const data = await response.json();
+      // handle your data
+
       // If everything goes well, redirect to the account page
       navigate('/mon-compte');
     } catch (error) {
@@ -81,9 +84,6 @@ function Login() {
           <div className="Login__errorMessage">{errorMessage}</div>
         )}
         {emailError && <div className="Login__emailError">{emailError}</div>}
-        {passwordError && (
-          <div className="Login__passwordError">{passwordError}</div>
-        )}
         <form onSubmit={handleSubmit}>
           <div className="Login__email">
             <input
