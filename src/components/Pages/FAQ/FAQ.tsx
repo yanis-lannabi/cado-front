@@ -2,7 +2,7 @@ import './FAQ.scss';
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
-function FAQ() {
+const FAQ: React.FC = () => {
   return (
     <article className="FAQ">
       <Header />
@@ -43,6 +43,6 @@ function FAQ() {
       <Footer />
     </article>
   );
-}
+};
 
 export default FAQ;
