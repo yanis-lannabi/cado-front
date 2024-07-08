@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import './CreateEvent.scss';
 
 import Header from '../../Elements/Header/Header';
@@ -11,46 +13,51 @@ function CreateEvent() {
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
   const [giftBudget, setGiftBudget] = useState('');
 
+  const history = useHistory();
+
   const handleAddParticipant = () => {
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
+  // const handleInputChange = (index, event) => {
+  //   const values = [...participants];
+
+  //   values[index].name = event.target.value;
+  //   values[index].email = event.target.value;
+
+  //   setParticipants(values);
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const usersAPI = 'http://165.227.232.51:3000/users';
+    const eventsAPI = 'http://165.227.232.51:3000/events';
+
+    const participantRequests = participants.map((participant) => {
+      return axios.post(usersAPI, participant);
+    });
+
+    const eventRequest = axios.post(eventsAPI, {
+      name: eventName,
+      date: eventDate,
+      description: eventDescription,
+      giftBudget,
+    });
+
     try {
-      if (
-        !eventName ||
-        !eventDate ||
-        participants.some(
-          (participant) => !participant.name || !participant.email
-        )
-      ) {
-        throw new Error('Veuillez remplir tous les champs obligatoires');
-      } else {
-        const response = await fetch('http://165.227.232.51:3000/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            eventName,
-            eventDate,
-            eventDescription,
-            participants,
-            giftBudget,
-          }),
-        });
+      await Promise.all([...participantRequests, eventRequest]);
+      history.push('/mes-evenements');
 
-        if (!response.ok) {
-          throw new Error("Erreur lors de la création de l'événement");
-        }
-
-        const data = await response.json();
-        console.log(data);
-      }
+      console.log(
+        eventName,
+        eventDate,
+        eventDescription,
+        participants,
+        giftBudget
+      );
     } catch (error) {
-      console.error(error);
+      console.error('Une erreur est survenue:', error);
     }
   };
 
