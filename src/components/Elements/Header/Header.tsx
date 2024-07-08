@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
 import './Header.scss';
 
@@ -44,7 +45,9 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <img src={logo} alt="Logo" className="logo" />
+      <Link to="/">
+        <img src={logo} alt="Logo" className="logo" />
+      </Link>
       {buttons}
     </header>
   );
