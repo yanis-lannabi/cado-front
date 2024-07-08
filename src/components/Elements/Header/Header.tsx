@@ -1,7 +1,11 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
+=======
+import logo from '/MainLogo.png';
+>>>>>>> ac6a0f8cc66da01e3cd262cba0a3f49234a596d6
 import './Header.scss';
 
 const Header: React.FC = () => {
@@ -16,7 +20,7 @@ const Header: React.FC = () => {
   ) {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Connection</button>
+        <button onClick={() => navigate('/se-connecter')}>Connexion</button>
       </div>
     );
   } else if (
@@ -30,13 +34,13 @@ const Header: React.FC = () => {
     buttons = (
       <div>
         <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
       </div>
     );
   } else if (location.pathname === '/se-connecter') {

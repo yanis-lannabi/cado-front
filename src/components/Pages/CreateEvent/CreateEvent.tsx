@@ -1,66 +1,167 @@
+import { useState } from 'react';
 import './CreateEvent.scss';
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
 function CreateEvent() {
+  const [eventName, setEventName] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
+  const [participants, setParticipants] = useState([{ name: '', email: '' }]);
+  const [giftBudget, setGiftBudget] = useState('');
+
+  const handleAddParticipant = () => {
+    setParticipants([...participants, { name: '', email: '' }]);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      if (
+        !eventName ||
+        !eventDate ||
+        participants.some(
+          (participant) => !participant.name || !participant.email
+        )
+      ) {
+        throw new Error('Veuillez remplir tous les champs obligatoires');
+      } else {
+        const response = await fetch('http://165.227.232.51:3000/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            eventName,
+            eventDate,
+            eventDescription,
+            participants,
+            giftBudget,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erreur lors de la création de l'événement");
+        }
+
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="create-event-page">
       <Header />
+
       <h2>Créer mon évènement</h2>
 
-      <form className="create-event">
+      <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">
-          <h3>Nom de l'évènement :</h3>
-          <input type="text" placeholder="Nom de l'évènement" />
+          <label htmlFor="eventName" className="create-event__element-title">
+            * Nom de l'évènement :
+          </label>
+          <input
+            type="text"
+            id="eventName"
+            value={eventName}
+            placeholder="Nom de l'évènement"
+            onChange={(e) => setEventName(e.target.value)}
+          />
+        </div>
+
+        <div className="create-event__element">
+          <label htmlFor="eventDate" className="create-event__element-title">
+            * Date de l'évènement :
+          </label>
+          <input
+            type="date"
+            id="eventDate"
+            value={eventDate}
+            onChange={(e) => setEventDate(e.target.value)}
+          />
         </div>
         <div className="create-event__element">
-          <h3>Date de l'évènement :</h3>
-          <input type="text" placeholder="JJ/MM/AAAA" />
+          <label
+            htmlFor="eventDescription"
+            className="create-event__element-title"
+          >
+            Description :
+          </label>
+          <input
+            type="text"
+            id="eventDescription"
+            value={eventDescription}
+            placeholder="Description de l'évènement"
+            onChange={(e) => setEventDescription(e.target.value)}
+          />
         </div>
         <div className="create-event__element">
-          <h3>Description :</h3>
-          <input type="text" placeholder="Description" />
-        </div>
-        <div className="create-event__element">
-          <h3>Participants :</h3>
+          <label htmlFor="participants" className="create-event__element-title">
+            * Participants :
+          </label>
 
           <div className="create-event__participants">
-            <div className="create-event__participant">
-              <input
-                className="create-event__participant__input-name"
-                type="text"
-                placeholder="Nom du participant"
-              />
-              <input
-                className="create-event__participant__input-email"
-                type="text"
-                placeholder="E-mail du participant"
-              />
-            </div>
-            <div className="create-event__participant">
-              <input
-                className="create-event__participant__input-name"
-                type="text"
-                placeholder="Nom du participant"
-              />
-              <input
-                className="create-event__participant__input-email"
-                type="text"
-                placeholder="E-mail du participant"
-              />
-            </div>
-            <button className="create-event__participants__add-button">
-              +
-            </button>
+            {participants.map((participant, i) => (
+              <div key={i} className="create-event__participant">
+                <input
+                  type="text"
+                  placeholder="Nom du participant"
+                  value={participant.name}
+                  onChange={(e) => {
+                    const newParticipants = [...participants];
+                    newParticipants[i].name = e.target.value;
+                    setParticipants(newParticipants);
+                  }}
+                />
+                <input
+                  type="email"
+                  placeholder="E-mail du participant"
+                  value={participant.email}
+                  onChange={(e) => {
+                    const newParticipants = [...participants];
+                    newParticipants[i].email = e.target.value;
+                    setParticipants(newParticipants);
+                  }}
+                />
+              </div>
+            ))}
+
+            <input
+              type="button"
+              value="+"
+              className="create-event__participants__add-button"
+              onClick={handleAddParticipant}
+            />
           </div>
         </div>
-        <div className="create-event__element">
-          <h3>Budget :</h3>
-          <input type="text" placeholder="Budget maximum par cadeau" />
+        <div className="create-event__element ">
+          <label htmlFor="giftBudget" className="create-event__element-title">
+            Budget (en euros) :
+          </label>
+          <input
+            type="number"
+            id="giftBudget"
+            value={giftBudget}
+            placeholder="Budget maximum par cadeau"
+            onChange={(e) => setGiftBudget(e.target.value)}
+          />
         </div>
 
-        <button className="create-event__validation-button">Valider</button>
+        <p className="create-event__mandatory-fields">
+          * Les champs avec une astérisque sont obligatoires
+        </p>
+
+        <input
+          type="submit"
+          className="create-event__validation-button"
+          value="Valider"
+        />
       </form>
+
       <Footer />
     </div>
   );

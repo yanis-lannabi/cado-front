@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from './components/Pages/Login/Login';
@@ -12,9 +11,10 @@ import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
 import MyAccount from './components/Pages/MyAccount/MyAccount';
-import MyEvent from './components/Pages/MyEvent/MyEvent';
+import MyEvents from './components/Pages/MyEvents/MyEvents';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
 
+// import 'semantic-ui-css/semantic.min.css';
 import './styles/index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
         <Route path="/mon-compte" element={<MyAccount />} />
-        <Route path="/mes-evenements" element={<MyEvent />} />
+        <Route path="/mes-evenements" element={<MyEvents />} />
         <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
       </Routes>
     </Router>
