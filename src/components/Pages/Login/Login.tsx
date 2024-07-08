@@ -48,12 +48,19 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
 
+      console.log(JSON.stringify({ email, password }));
+
       if (!response.ok) {
+        if (response.headers.get('Content-Type').includes('application/json')) {
+          const errorData = await response.json();
+          console.log(errorData);
+        } else {
+          console.log(await response.text());
+        }
         throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
-      console.log(data);
       // handle your data
 
       // If everything goes well, redirect to the account page
