@@ -1,11 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
-=======
-import logo from '/MainLogo.png';
->>>>>>> ac6a0f8cc66da01e3cd262cba0a3f49234a596d6
 import './Header.scss';
 
 const Header: React.FC = () => {
