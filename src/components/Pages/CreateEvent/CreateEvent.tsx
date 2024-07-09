@@ -1,55 +1,56 @@
 import { useState } from 'react';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
 import './CreateEvent.scss';
 
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
 function CreateEvent() {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
-  const [eventDescription, setEventDescription] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
-
-  // const history = useHistory();
 
   const handleAddParticipant = () => {
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
-  // const handleInputChange = (index, event) => {
-  //   const values = [...participants];
-
-  //   values[index].name = event.target.value;
-  //   values[index].email = event.target.value;
-
-  //   setParticipants(values);
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const usersAPI = 'http://165.227.232.51:3000/users';
     const eventsAPI = 'http://165.227.232.51:3000/events';
+    const usersAPI = 'http://165.227.232.51:3000/users';
 
-    const participantRequests = participants.map((participant) => {
-      return axios.post(usersAPI, participant);
-    });
-
-    const eventRequest = axios.post(eventsAPI, {
+    const eventData = {
       name: eventName,
       date: eventDate,
-      description: eventDescription,
-    });
+    };
 
     try {
-      await Promise.all([...participantRequests, eventRequest]);
-      // history.push('/mes-evenements');
+      const eventResponse = await axios.post(eventsAPI, eventData);
 
-      console.log(eventName, eventDate, eventDescription, participants);
+      for (const participant of participants) {
+        const participantData = {
+          name: participant.name,
+          email: participant.email,
+        };
+
+        const userResponse = await axios.post(usersAPI, participantData);
+
+        console.log(userResponse.data);
+      }
+
+      console.log(eventResponse.data);
     } catch (error) {
       console.error('Une erreur est survenue:', error);
+      if (error.response && error.response.status === 500) {
+        error =
+          'Une erreur est survenue sur le serveur. Veuillez réessayer plus tard.';
+      } else {
+        error =
+          "Une erreur est survenue lors de la création de l'événement. Veuillez réessayer.";
+      }
     }
   };
 
@@ -83,21 +84,7 @@ function CreateEvent() {
             onChange={(e) => setEventDate(e.target.value)}
           />
         </div>
-        <div className="create-event__element">
-          <label
-            htmlFor="eventDescription"
-            className="create-event__element-title"
-          >
-            Description :
-          </label>
-          <input
-            type="text"
-            id="eventDescription"
-            value={eventDescription}
-            placeholder="Description de l'évènement"
-            onChange={(e) => setEventDescription(e.target.value)}
-          />
-        </div>
+
         <div className="create-event__element">
           <label htmlFor="participants" className="create-event__element-title">
             * Participants :
