@@ -1,22 +1,19 @@
 /* eslint-disable no-console */
 import './SignUp.scss';
 import React, { useState } from 'react';
-// import Header from '../../Elements/Header/Header';
-// import Footer from '../../Elements/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
 
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // API call
-
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     fetch('http://165.227.232.51:3000/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
@@ -24,13 +21,19 @@ function SignUp() {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
         if (data.name && data.email && data.password) {
           setSignUpStatus('Inscription réussie !');
           setName('');
           setEmail('');
           setPassword('');
+          navigate('/se-connecter'); // Redirect to the login page
         } else {
           setSignUpStatus("Échec de l'inscription : Données manquantes");
         }
@@ -46,6 +49,7 @@ function SignUp() {
 
   return (
     <div className="WebsiteName">
+      <Header />
       <header className="Website__title">
         <h1>Organisez rapidement vos évènements</h1>
       </header>
@@ -87,6 +91,7 @@ function SignUp() {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
