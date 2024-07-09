@@ -1,10 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1.3rem;
+  background-color: #ffffcc;
 
   .logo {
-    height: 50px;
+    height: 3.5rem;
   }
 
   div {
@@ -12,4 +13,14 @@
       margin-left: 10px;
     }
   }
+}
+
+button {
+  width: 10rem;
+  margin: 1rem auto;
+  padding: 0.2rem 1.9rem;
+  border-radius: 0.5rem;
+  background: #000000;
+  color: #dfdedf;
+  font-size: 1rem;
 }

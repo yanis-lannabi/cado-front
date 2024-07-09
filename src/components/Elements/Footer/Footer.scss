@@ -1,12 +1,13 @@
 .footer {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 1.5rem;
 
   position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
+  background-color: #ffffcc;
 
   div {
     display: flex;
