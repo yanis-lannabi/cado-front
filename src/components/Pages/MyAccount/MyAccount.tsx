@@ -1,11 +1,6 @@
 // Importing necessary libraries and components
-import React, { useEffect, useState } from 'react';
 import './MyAccount.scss';
 import { Link } from 'react-router-dom';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
-// src/components/Pages/MyAccount/MyAccount.tsx
-
 // src/components/Pages/MyAccount/MyAccount.tsx
 
 import { useAuth } from '../../../Hooks/useAuth';
@@ -18,17 +13,28 @@ const MyAccount = () => {
   }
 
   return (
-    <div>
-      <h1>Mon Compte</h1>
-      <p>
-        <strong>Nom:</strong> {authData.user.name}
+    <div className="MyAccount">
+      <header className="MyAccount-title">
+        <h1>Mon compte</h1>
+      </header>
+      <p className="MyAccount-WelcomeMessage">
+        Bienvenue {authData.user.name.toUpperCase()}!
       </p>
-      <p>
-        <strong>Email:</strong> {authData.user.email}
-      </p>
-      <p>
-        <strong>ID:</strong> {authData.user.id}
-      </p>
+      <h2>IMAGE A TROUVER</h2>
+      <div className="MyAccount__Buttons">
+        <Link
+          to="/mes-donnees-personnelles"
+          className="MyAccount__personalData"
+        >
+          Données personnelles
+        </Link>
+        <Link to="/mes-evenements" className="MyAccount__MyEvents">
+          Mes évènements
+        </Link>
+        <Link to="/creer-un-evenement" className="MyAccount__CreateEvent">
+          Nouvel évènement
+        </Link>
+      </div>
     </div>
   );
 };
