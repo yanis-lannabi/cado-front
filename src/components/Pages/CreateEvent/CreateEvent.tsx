@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import './CreateEvent.scss';
 
 import Header from '../../Elements/Header/Header';
@@ -11,9 +11,8 @@ function CreateEvent() {
   const [eventDate, setEventDate] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
-  const [giftBudget, setGiftBudget] = useState('');
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleAddParticipant = () => {
     setParticipants([...participants, { name: '', email: '' }]);
@@ -42,20 +41,13 @@ function CreateEvent() {
       name: eventName,
       date: eventDate,
       description: eventDescription,
-      giftBudget,
     });
 
     try {
       await Promise.all([...participantRequests, eventRequest]);
-      history.push('/mes-evenements');
+      // history.push('/mes-evenements');
 
-      console.log(
-        eventName,
-        eventDate,
-        eventDescription,
-        participants,
-        giftBudget
-      );
+      console.log(eventName, eventDate, eventDescription, participants);
     } catch (error) {
       console.error('Une erreur est survenue:', error);
     }
@@ -144,18 +136,6 @@ function CreateEvent() {
               onClick={handleAddParticipant}
             />
           </div>
-        </div>
-        <div className="create-event__element ">
-          <label htmlFor="giftBudget" className="create-event__element-title">
-            Budget (en euros) :
-          </label>
-          <input
-            type="number"
-            id="giftBudget"
-            value={giftBudget}
-            placeholder="Budget maximum par cadeau"
-            onChange={(e) => setGiftBudget(e.target.value)}
-          />
         </div>
 
         <p className="create-event__mandatory-fields">
