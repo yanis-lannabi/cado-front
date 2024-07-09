@@ -1,3 +1,19 @@
+@use '../../../styles/variables' as v;
+
+// @keyframes roulette {
+//   0% {
+//     transform: translateY(100%);
+//     opacity: 0;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+//   100% {
+//     transform: translateY(-100%);
+//     opacity: 0;
+//   }
+// }
+
 .draw-result-page {
   display: flex;
   flex-direction: column;
@@ -8,8 +24,8 @@
   text-align: center;
 }
 
-h2 {
-  font-size: 2rem;
+h1 {
+  font-size: 3rem;
   margin: 4rem auto 1rem auto;
   width: 50%;
   text-align: center;
@@ -19,24 +35,71 @@ p {
   margin: 1rem auto;
   width: 50%;
   text-align: center;
+  font-size: 1.3rem;
 }
 
-button {
-  width: 10rem;
+.draw-button {
+  width: 12rem;
   margin: 1rem auto;
   padding: 0.2rem 1.9rem;
   border-radius: 0.5rem;
   background: #000000;
   color: #dfdedf;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
-.draw-result {
+.draw-roulette {
+  position: relative;
+
+  // adding some pseudo elements to add some style to the roulette
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.8rem;
+    border: #000000 solid 3px;
+    background: repeating-linear-gradient(
+      45deg,
+      v.$color-bg,
+      v.$color-primary 10px,
+      v.$color 10px,
+      v.$color-bg 20px
+    );
+  }
+
+  &::before {
+    left: -10px;
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  &::after {
+    right: -10px;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
   font-size: 4rem;
   margin: 3rem auto;
-  width: 50%;
+  width: 30rem;
   text-align: center;
   border: #000000 solid 1px;
-  border-radius: 1rem;
-  background: #d3d3d3;
+  background: v.$color-primary;
+}
+
+.placeholder {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.result {
+  font-size: 3rem;
+  height: 100%;
+  // transition: opacity 2s ease-in-out;
+
+  animation: roulette 0.5s linear;
+}
+
+.event-link {
+  margin-bottom: 6rem;
 }
