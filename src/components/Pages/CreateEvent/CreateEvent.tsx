@@ -44,13 +44,15 @@ function CreateEvent() {
       console.log(eventResponse.data);
     } catch (error) {
       console.error('Une erreur est survenue:', error);
+      let errorMessage = '';
       if (error.response && error.response.status === 500) {
-        error =
+        errorMessage =
           'Une erreur est survenue sur le serveur. Veuillez réessayer plus tard.';
       } else {
-        error =
+        errorMessage =
           "Une erreur est survenue lors de la création de l'événement. Veuillez réessayer.";
       }
+      setErrorMessage(errorMessage);
     }
   };
 
