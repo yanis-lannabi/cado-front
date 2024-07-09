@@ -1,12 +1,15 @@
 // Importing styles specific to this component
 import './Login.scss';
+import { useNavigate } from 'react-router-dom';
+// Importing necessary hooks from react-router-dom and React
+import { useState, useEffect } from 'react';
+import {
+  login as loginService,
+  AuthResponse,
+} from '../../../Services/authService';
 // Importing Header and Footer components
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
-
-// Importing necessary hooks from react-router-dom and React
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 // Defining the Login component
 function Login() {
@@ -39,36 +42,11 @@ function Login() {
       return;
     }
     try {
-      // Attempt to log in by sending a POST request to the API
-      const response = await fetch('http://165.227.232.51:3000/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      console.log(JSON.stringify({ email, password }));
-
-      if (!response.ok) {
-        const contentType = response.headers.get('Content-Type');
-        if (contentType && contentType.includes('application/json')) {
-          const errorData = await response.json();
-          console.log(errorData);
-        } else {
-          console.log(await response.text());
-        }
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      // handle your data
-
-      // If everything goes well, redirect to the account page
+      const data: AuthResponse = await loginService(email, password);
+      localStorage.setItem('authData', JSON.stringify(data));
       navigate('/mon-compte');
     } catch (error) {
       if (error instanceof Error) {
-        // If an error occurs, display it
         setErrorMessage(error.message);
         console.error(error);
       }
@@ -91,7 +69,6 @@ function Login() {
               type="email"
               placeholder="email"
               value={email}
-              //Updates the email state with the user's input.
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -101,7 +78,6 @@ function Login() {
               type="password"
               placeholder="password"
               value={password}
-              //Updates the password state with the user's input.
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -122,5 +98,4 @@ function Login() {
   );
 }
 
-// Exporting the component to be able to use it elsewhere
 export default Login;

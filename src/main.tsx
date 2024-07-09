@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+// src/App.tsx
+
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import Header from './components/Elements/Header/Header';
+import Footer from './components/Elements/Footer/Footer';
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
@@ -13,39 +16,49 @@ import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
 import MyAccount from './components/Pages/MyAccount/MyAccount';
 import MyEvents from './components/Pages/MyEvents/MyEvents';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
-
-// import 'semantic-ui-css/semantic.min.css';
-import './styles/index.scss';
-
-type User = {
-  name: string;
-  email: string;
-};
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
-  const [user, setUser] = useState<User | null>(null);
-
   return (
-    <React.StrictMode>
-      <Router>
-        <Routes>
-          <Route path="/se-connecter" element={<Login />} />
-          <Route path="/s-inscrire" element={<SignUp />} />
-          <Route path="/creer-un-evenement" element={<CreateEvent />} />
-          <Route path="/resultat" element={<DrawResult />} />
-          <Route path="/details-evenement" element={<EventDetails />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/mentions-legales" element={<LegalNotices />} />
-          <Route path="/mon-compte" element={<MyAccount />} />
-          <Route path="/mes-evenements" element={<MyEvents />} />
-          <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
-        </Routes>
-      </Router>
-    </React.StrictMode>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/se-connecter" element={<Login />} />
+        <Route path="/s-inscrire" element={<SignUp />} />
+        <Route path="/creer-un-evenement" element={<CreateEvent />} />
+        <Route path="/resultat" element={<DrawResult />} />
+        <Route path="/details-evenement" element={<EventDetails />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/mentions-legales" element={<LegalNotices />} />
+        <Route
+          path="/mon-compte"
+          element={
+            <ProtectedRoute>
+              <MyAccount />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mes-evenements"
+          element={
+            <ProtectedRoute>
+              <MyEvents />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mes-donnees-personnelles"
+          element={
+            <ProtectedRoute>
+              <PersonalData />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+      <Footer />
+    </Router>
   );
 };
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
-
-export default App;
