@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './DrawResult.scss';
 
-
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
@@ -41,7 +40,10 @@ function DrawResult() {
 
       <h1>Bienvenue (prénom) !</h1>
 
-      <p> La personne à qui tu devras offrir un cadeau est...</p>
+      <p className="draw-text">
+        {' '}
+        La personne à qui tu devras offrir un cadeau est...
+      </p>
       <button
         className="draw-button"
         onClick={handleDraw}
