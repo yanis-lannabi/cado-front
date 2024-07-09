@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './DrawResult.scss';
 
+
 import Header from '../../Elements/Header/Header';
 import Footer from '../../Elements/Footer/Footer';
 
@@ -37,7 +38,9 @@ function DrawResult() {
   return (
     <div className="draw-result-page">
       <Header />
+
       <h1>Bienvenue (prénom) !</h1>
+
       <p> La personne à qui tu devras offrir un cadeau est...</p>
       <button
         className="draw-button"

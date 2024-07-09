@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import logo from '../../../assets/MainLogo.png';
+import logo from '../../../../public/MainLogo.png';
 import './Header.scss';
 
 const Header: React.FC = () => {
@@ -16,7 +15,7 @@ const Header: React.FC = () => {
   ) {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Connexion</button>
+        <button onClick={() => navigate('/se-connecter')}>Connection</button>
       </div>
     );
   } else if (
@@ -30,13 +29,13 @@ const Header: React.FC = () => {
     buttons = (
       <div>
         <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+        <button onClick={() => navigate('/se-connecter')}>Déconnection</button>
       </div>
     );
   } else if (location.pathname === '/se-connecter') {
@@ -45,9 +44,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/">
-        <img src={logo} alt="Logo" className="logo" />
-      </Link>
+      <img src={logo} alt="Logo" className="logo" />
       {buttons}
     </header>
   );

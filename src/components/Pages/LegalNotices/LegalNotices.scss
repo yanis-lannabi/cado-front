@@ -1,17 +1,26 @@
 //@use '../../styles/variables' as v;
 
 .LegalNotices-title {
-  margin-top: 1.5rem;
-  margin-left: 0.5rem;
+  margin-left: 10rem;
+  padding-top: 3rem;
+  font-size: x-large;
 }
 
 .LegalNotices-date, .LegalNotices-preface, .LegalNotices-editor, 
 .LegalNotices-host, .LegalNotices-websiteAccess, .LegalNotices-CollectData {
   margin-bottom: 4rem;
-  margin-left: 0.5rem;
+  margin-left: 6rem;
   width: 50%;
 }
 
 h3 {
-  margin-left: 0.5rem;
+  margin-left: 7.5rem;
+}
+
+.LegalNotices-date {
+  margin-left: 10rem;
+}
+
+.LegalNotices-preface {
+  margin-left: 5rem;
 }
