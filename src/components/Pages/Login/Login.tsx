@@ -51,7 +51,8 @@ function Login() {
       console.log(JSON.stringify({ email, password }));
 
       if (!response.ok) {
-        if (response.headers.get('Content-Type').includes('application/json')) {
+        const contentType = response.headers.get('Content-Type');
+        if (contentType && contentType.includes('application/json')) {
           const errorData = await response.json();
           console.log(errorData);
         } else {

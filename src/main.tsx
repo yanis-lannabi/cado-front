@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -17,22 +17,35 @@ import PersonalData from './components/Pages/PersonalData/PersonalData';
 // import 'semantic-ui-css/semantic.min.css';
 import './styles/index.scss';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/se-connecter" element={<Login />} />
-        <Route path="/s-inscrire" element={<SignUp />} />
-        <Route path="/creer-un-evenement" element={<CreateEvent />} />
-        <Route path="/resultat" element={<DrawResult />} />
-        <Route path="/details-evenement" element={<EventDetails />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/mentions-legales" element={<LegalNotices />} />
-        <Route path="/mon-compte" element={<MyAccount />} />
-        <Route path="/mes-evenements" element={<MyEvents />} />
-        <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
-      </Routes>
-    </Router>
-  </React.StrictMode>
-);
+type User = {
+  name: string;
+  email: string;
+};
+
+const App = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  return (
+    <React.StrictMode>
+      <Router>
+        <Routes>
+          <Route path="/se-connecter" element={<Login />} />
+          <Route path="/s-inscrire" element={<SignUp />} />
+          <Route path="/creer-un-evenement" element={<CreateEvent />} />
+          <Route path="/resultat" element={<DrawResult />} />
+          <Route path="/details-evenement" element={<EventDetails />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/mentions-legales" element={<LegalNotices />} />
+          <Route path="/mon-compte" element={<MyAccount />} />
+          <Route path="/mes-evenements" element={<MyEvents />} />
+          <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
+        </Routes>
+      </Router>
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+
+export default App;
