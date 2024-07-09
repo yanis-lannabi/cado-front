@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './DrawResult.scss';
 
+import Header from '../../Elements/Header/Header';
+import Footer from '../../Elements/Footer/Footer';
+
 // fictive list of participants to test the feature
 const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
 
@@ -33,6 +36,7 @@ function DrawResult() {
 
   return (
     <div className="draw-result-page">
+      <Header />
       <h1>Bienvenue (prénom) !</h1>
       <p> La personne à qui tu devras offrir un cadeau est...</p>
       <button
@@ -42,7 +46,6 @@ function DrawResult() {
       >
         Clique ici !
       </button>
-      <div className="stripe"></div>
       <div className="draw-roulette">
         {!isButtonClicked ? (
           <p className="placeholder">?</p>
@@ -50,10 +53,11 @@ function DrawResult() {
           <p className="result"> {participants[currentIndex]} </p>
         ) : null}
       </div>
-      <div className="stripe"></div>
+
       <a className="event-link" href="/details-evenement">
         Voir le détail de l'évènement
       </a>
+      <Footer />
     </div>
   );
 }
