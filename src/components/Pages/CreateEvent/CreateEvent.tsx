@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './CreateEvent.scss';
+import { useAuth } from '../../../Hooks/useAuth';
 
 function CreateEvent() {
+  const { authData } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
 
   const [name, setName] = useState('');
@@ -22,11 +24,12 @@ function CreateEvent() {
     e.preventDefault();
 
     const API = 'http://localhost:3000/create-event';
-
+    const organizerId = authData?.user.id;
     try {
       const eventResponse = await axios.post(API, {
         name,
         date,
+        organizer_id: organizerId,
         participants,
       });
 
