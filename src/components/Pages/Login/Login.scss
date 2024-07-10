@@ -1,11 +1,15 @@
 //@use '../../styles/variables' as v;
+.WebsiteName {
+  margin-top: 4rem;
+  margin-bottom: 4rem; // A MODIFIER
+}
 
 .Login {
   text-align: center;
 }
 
 h2 {
-  margin: 2.5rem;
+  margin: 4rem;
 }
 
 .Website__Title {
@@ -35,7 +39,6 @@ h2 {
   padding: 0.2rem 1.9rem;
   border-radius: 0.2rem;
   border: none;
-
   background: #000000;
   color: #dfdedf;
 }
@@ -49,7 +52,6 @@ h2 {
   padding: 0.2rem 2rem;
   border-radius: 0.2rem;
   border: none;
-
   background: #000000;
   color: #dfdedf;
 }

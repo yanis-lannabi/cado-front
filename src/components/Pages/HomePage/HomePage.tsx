@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
 import homeImage from '../../../../public/FavIcon.png';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 import './HomePage.scss';
 
 function HomePage() {
   return (
     <div className="home">
-      <Header />
       <h1 className="home__title">Bienvenue sur Cad'O</h1>
       <div className="home__container">
         <div className="home__concept-explaination">
@@ -38,8 +35,6 @@ function HomePage() {
         </div>
         <img className="home__image" src={homeImage} alt="" />
       </div>
-
-      <Footer />
     </div>
   );
 }

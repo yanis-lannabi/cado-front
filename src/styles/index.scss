@@ -1,5 +1,5 @@
-//@use 'reset';
-//@use 'variables' as v;
+@use 'reset';
+@use 'variables' as v;
 
 body {
   background-color: #fff8ed;
@@ -18,4 +18,9 @@ code {
 
 p {
   border: none;
+}
+
+button,
+a {
+  cursor: pointer;
 }

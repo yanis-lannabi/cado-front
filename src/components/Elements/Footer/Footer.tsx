@@ -6,8 +6,10 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div>
-        <Link to="/mentions-legales">Mentions légales</Link>
-        <Link to="/faq">FAQ</Link>
+        {location.pathname !== '/mentions-legales' && (
+          <Link to="/mentions-legales">Mentions légales</Link>
+        )}
+        {location.pathname !== '/faq' && <Link to="/faq">FAQ</Link>}
         <div>© 2024</div>
       </div>
     </footer>

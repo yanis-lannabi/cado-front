@@ -1,11 +1,8 @@
 import './EventDetails.scss';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 function EventDetails() {
   return (
     <div className="event-details-page">
-      <Header />
       <button className="myevents-button"> Tous mes évènements</button>
       <h1 className="event-details__title">Nom de l'évènement</h1>
 
@@ -69,7 +66,6 @@ function EventDetails() {
           </button>
         </div>
       </form>
-      <Footer />
     </div>
   );
 }

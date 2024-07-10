@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import './DrawResult.scss';
 
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
-
 // fictive list of participants to test the feature
 const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
 
@@ -36,8 +33,6 @@ function DrawResult() {
 
   return (
     <div className="draw-result-page">
-      <Header />
-
       <h1>Bienvenue (prénom) !</h1>
 
       <p className="draw-text">
@@ -62,7 +57,6 @@ function DrawResult() {
       <a className="event-link" href="/details-evenement">
         Voir le détail de l'évènement
       </a>
-      <Footer />
     </div>
   );
 }

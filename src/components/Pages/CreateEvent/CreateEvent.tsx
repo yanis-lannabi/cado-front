@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import './CreateEvent.scss';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 function CreateEvent() {
   const [eventName, setEventName] = useState('');
@@ -55,8 +53,6 @@ function CreateEvent() {
 
   return (
     <div className="create-event-page">
-      <Header />
-
       <h2>Créer mon évènement</h2>
 
       <form className="create-event" onSubmit={handleSubmit}>
@@ -161,8 +157,6 @@ function CreateEvent() {
           value="Valider"
         />
       </form>
-
-      <Footer />
     </div>
   );
 }

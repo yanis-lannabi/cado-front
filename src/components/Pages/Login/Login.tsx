@@ -7,9 +7,6 @@ import {
   login as loginService,
   AuthResponse,
 } from '../../../Services/authService';
-// Importing Header and Footer components
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 // Defining the Login component
 function Login() {
@@ -56,7 +53,6 @@ function Login() {
   // Component rendering
   return (
     <div className="WebsiteName">
-      <Header />
       <div className="Login">
         <h2>Connectez-vous à votre compte</h2>
         {errorMessage && (
@@ -93,7 +89,6 @@ function Login() {
           Créer un compte
         </button>
       </div>
-      <Footer />
     </div>
   );
 }
