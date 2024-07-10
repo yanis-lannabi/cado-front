@@ -1,8 +1,6 @@
 // import { parseAst } from 'vite';
 import './PersonalData.scss';
 import React, { useState } from 'react';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 function PersonalData() {
   const [userData, setUserData] = useState({
@@ -22,7 +20,6 @@ function PersonalData() {
 
   return (
     <div className="WebsiteName">
-      <Header />
       <header className="Website__Title">
         <h1>Données personnelles</h1>
       </header>
@@ -38,7 +35,7 @@ function PersonalData() {
           <p>Prénom</p>
           <input
             type="text"
-            name="prenom"
+            name="prénom"
             value={userData.prénom}
             onChange={handleChange}
           />
@@ -63,7 +60,6 @@ function PersonalData() {
           Enregistrement des données modifiées
         </button>
       </div>
-      <Footer />
     </div>
   );
 }
