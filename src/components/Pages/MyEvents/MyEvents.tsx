@@ -1,7 +1,5 @@
 import './MyEvents.scss';
 import React, { useState } from 'react';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 function MyEvent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -12,7 +10,6 @@ function MyEvent() {
 
   return (
     <div className="WebsiteName">
-      <Header />
       <header className="Website__Title">
         <h1>Mes évènements</h1>
       </header>
@@ -42,7 +39,6 @@ function MyEvent() {
           Créer un événement
         </button>
       </div>
-      <Footer />
     </div>
   );
 }
