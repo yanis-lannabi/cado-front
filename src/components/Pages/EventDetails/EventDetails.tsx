@@ -4,7 +4,7 @@ function EventDetails() {
   return (
     <div className="event-details-page">
       <button className="myevents-button"> Tous mes évènements</button>
-      <h2>Nom de l'évènement</h2>
+      <h1 className="event-details__title">Nom de l'évènement</h1>
 
       <form className="event-details">
         <div className="event-details__element">

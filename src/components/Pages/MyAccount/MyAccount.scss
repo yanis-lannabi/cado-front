@@ -1,30 +1,74 @@
 //@use '../../styles/variables' as v;
 
 .MyAccount-title {
-  text-align:center;
+  text-align: center;
   margin-top: 4rem;
   margin-bottom: 5rem;
 }
 
-.MyAccount-WelcomeMessage, .MyAccount-EventsMessage, h2 {
-  text-align:center;
+.MyAccount-WelcomeMessage,
+.MyAccount-EventsMessage,
+h2 {
+  text-align: center;
 }
 
 h2 {
   margin-top: 3rem;
 }
 
-.MyAccount__personalData, .MyAccount__MyEvents, .MyAccount__CreateEvent {
+.MyAccount__personalData,
+.MyAccount__MyEvents,
+.MyAccount__CreateEvent {
   display: flex;
-flex-direction:row ;
-margin-bottom: 2.5rem;
-margin-left: 1rem;
-width: 9%;
-padding: 0.2rem 1.9rem;
-border-radius: 0.2rem;
-border: none;
-
-background: #000000;
-color: #DFDEDF;
+  flex-direction: row;
+  margin-bottom: 2.5rem;
+  margin-left: 3rem;
+  width: 10%;
+  padding: 0.5rem;
+  padding-left: 1.1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: #000000;
+  color: #dfdedf;
 }
 
+.MyAccount__personalData {
+  position: fixed;
+  top: 10rem;
+}
+
+.MyAccount__MyEvents {
+  position: fixed;
+  top: 15rem;
+}
+
+.MyAccount__CreateEvent {
+  position: fixed;
+  top: 20rem;
+}
+
+.MyAccount__MyEvents {
+  padding-left: 2.2rem;
+}
+
+.MyAccount__CreateEvent {
+  padding-left: 1.8rem;
+}
+
+.LoadingPage {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.MyAccount-WelcomeMessage {
+  color: #ffc547; /* Une couleur rouge-orange vif */
+  font-size: 3em; /* Une taille de police plus grande pour plus d'impact */
+  text-shadow: 2px 2px 4px #000000; /* Une ombre portée pour donner du relief au texte */
+}
