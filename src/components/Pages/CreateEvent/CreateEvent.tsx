@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './CreateEvent.scss';
 
 function CreateEvent() {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
-  const [eventDescription, setEventDescription] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
-  const [giftBudget, setGiftBudget] = useState('');
 
   const handleAddParticipant = () => {
     setParticipants([...participants, { name: '', email: '' }]);
@@ -15,39 +16,40 @@ function CreateEvent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const eventsAPI = 'http://165.227.232.51:3000/events';
+    const usersAPI = 'http://165.227.232.51:3000/users';
+
+    const eventData = {
+      name: eventName,
+      date: eventDate,
+    };
+
     try {
-      if (
-        !eventName ||
-        !eventDate ||
-        participants.some(
-          (participant) => !participant.name || !participant.email
-        )
-      ) {
-        throw new Error('Veuillez remplir tous les champs obligatoires');
-      } else {
-        const response = await fetch('http://165.227.232.51:3000/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            eventName,
-            eventDate,
-            eventDescription,
-            participants,
-            giftBudget,
-          }),
-        });
+      const eventResponse = await axios.post(eventsAPI, eventData);
 
-        if (!response.ok) {
-          throw new Error("Erreur lors de la création de l'événement");
-        }
+      for (const participant of participants) {
+        const participantData = {
+          name: participant.name,
+          email: participant.email,
+        };
 
-        const data = await response.json();
-        console.log(data);
+        const userResponse = await axios.post(usersAPI, participantData);
+
+        console.log(userResponse.data);
       }
+
+      console.log(eventResponse.data);
     } catch (error) {
-      console.error(error);
+      console.error('Une erreur est survenue:', error);
+      let errorMessage = '';
+      if (error.response && error.response.status === 500) {
+        errorMessage =
+          'Une erreur est survenue sur le serveur. Veuillez réessayer plus tard.';
+      } else {
+        errorMessage =
+          "Une erreur est survenue lors de la création de l'événement. Veuillez réessayer.";
+      }
+      setErrorMessage(errorMessage);
     }
   };
 
@@ -80,21 +82,7 @@ function CreateEvent() {
             onChange={(e) => setEventDate(e.target.value)}
           />
         </div>
-        <div className="create-event__element">
-          <label
-            htmlFor="eventDescription"
-            className="create-event__element-title"
-          >
-            Description :
-          </label>
-          <input
-            type="text"
-            id="eventDescription"
-            value={eventDescription}
-            placeholder="Description de l'évènement"
-            onChange={(e) => setEventDescription(e.target.value)}
-          />
-        </div>
+
         <div className="create-event__element">
           <label htmlFor="participants" className="create-event__element-title">
             * Participants :
@@ -133,18 +121,6 @@ function CreateEvent() {
               onClick={handleAddParticipant}
             />
           </div>
-        </div>
-        <div className="create-event__element ">
-          <label htmlFor="giftBudget" className="create-event__element-title">
-            Budget (en euros) :
-          </label>
-          <input
-            type="number"
-            id="giftBudget"
-            value={giftBudget}
-            placeholder="Budget maximum par cadeau"
-            onChange={(e) => setGiftBudget(e.target.value)}
-          />
         </div>
 
         <p className="create-event__mandatory-fields">

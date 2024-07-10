@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
@@ -11,17 +12,21 @@ import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
 import MyAccount from './components/Pages/MyAccount/MyAccount';
 import MyEvents from './components/Pages/MyEvents/MyEvents';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
+
 import ProtectedRoute from './components/ProtectedRoute';
 
 import Header from './components/Elements/Header/Header';
 import Footer from './components/Elements/Footer/Footer';
 
+
 import './styles/index.scss';
+
 
 const App = () => {
   return (
     <Router>
       <Header />
+
       <Routes>
         <Route path="/se-connecter" element={<Login />} />
         <Route path="/s-inscrire" element={<SignUp />} />
@@ -31,6 +36,7 @@ const App = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
+
         <Route
           path="/mon-compte"
           element={
@@ -62,3 +68,4 @@ const App = () => {
 };
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+
