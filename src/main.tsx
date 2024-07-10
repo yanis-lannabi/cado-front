@@ -1,7 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
@@ -13,12 +11,10 @@ import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
 import MyAccount from './components/Pages/MyAccount/MyAccount';
 import MyEvents from './components/Pages/MyEvents/MyEvents';
 import PersonalData from './components/Pages/PersonalData/PersonalData';
+import ProtectedRoute from './components/ProtectedRoute';
 
-// import 'semantic-ui-css/semantic.min.css';
-import './styles/index.scss';
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const App = () => {
+  return (
     <Router>
       <Routes>
         <Route path="/se-connecter" element={<Login />} />
@@ -29,10 +25,33 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/faq" element={<FAQ />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
-        <Route path="/mon-compte" element={<MyAccount />} />
-        <Route path="/mes-evenements" element={<MyEvents />} />
-        <Route path="/mes-donnees-personnelles" element={<PersonalData />} />
+        <Route
+          path="/mon-compte"
+          element={
+            <ProtectedRoute>
+              <MyAccount />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mes-evenements"
+          element={
+            <ProtectedRoute>
+              <MyEvents />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mes-donnees-personnelles"
+          element={
+            <ProtectedRoute>
+              <PersonalData />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
-  </React.StrictMode>
-);
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
