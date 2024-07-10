@@ -2,8 +2,6 @@
 import './SignUp.scss';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -49,7 +47,6 @@ function SignUp() {
 
   return (
     <div className="WebsiteName">
-      <Header />
       <header className="Website__title">
         <h1>Organisez rapidement vos évènements</h1>
       </header>
@@ -91,7 +88,6 @@ function SignUp() {
           </button>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }
