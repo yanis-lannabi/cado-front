@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
@@ -8,6 +8,28 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('authData')
+  );
+
+  useEffect(() => {
+    function handleStorageChange() {
+      setIsAuthenticated(!!localStorage.getItem('authData'));
+    }
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem('authData');
+    setIsAuthenticated(false);
+    navigate('/se-connecter');
+  };
+
   let buttons;
   if (
     ['/', '/s-inscrire', '/resultat', '/mentions-legales', '/faq'].includes(
@@ -16,7 +38,13 @@ const Header: React.FC = () => {
   ) {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Connexion</button>
+        <button
+          onClick={() =>
+            navigate(isAuthenticated ? '/mon-compte' : '/se-connecter')
+          }
+        >
+          {isAuthenticated ? 'Mon Compte' : 'Connexion'}
+        </button>
       </div>
     );
   } else if (
@@ -30,13 +58,13 @@ const Header: React.FC = () => {
     buttons = (
       <div>
         <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+        <button onClick={logout}>Déconnexion</button>{' '}
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+        <button onClick={logout}>Déconnexion</button>{' '}
       </div>
     );
   } else if (location.pathname === '/se-connecter') {
