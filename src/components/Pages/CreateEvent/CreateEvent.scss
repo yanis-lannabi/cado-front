@@ -14,6 +14,8 @@ h1 {
   border: 1px solid black;
   border-radius: 1rem;
   background-color: #ffffff;
+  border: solid black 0.4rem;
+  background-color: #f0c87e;
 
   &__element {
     display: flex;
@@ -33,8 +35,16 @@ h1 {
     display: flex;
     flex-direction: column;
 
-    &__add-button {
+    &__addNremove-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__add-button,
+    &__remove-button {
       margin: auto;
+      margin-left: 1rem;
       width: 4rem;
       border-radius: 0.5rem;
       background: #d3d3d3;
@@ -74,4 +84,17 @@ input {
 
 #eventDate {
   color: grey;
+}
+
+// if the button is disabled, the background color is grey and the cursor is not allowed
+
+.create-event__validation-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin: auto;
+  color: red;
+  font-weight: bold;
 }
