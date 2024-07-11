@@ -25,6 +25,12 @@ function CreateEvent() {
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
+  const handleRemoveParticipant = () => {
+    const newParticipant = [...participants];
+    newParticipant.pop();
+    setParticipants(newParticipant);
+  };
+
   const formattedDate = (date) => {
     const [day, month, year] = date.split('/');
     return `${year}-${month}-${day}`;
@@ -125,12 +131,20 @@ function CreateEvent() {
               </div>
             ))}
 
-            <input
-              type="button"
-              value="+"
-              className="create-event__participants__add-button"
-              onClick={handleAddParticipant}
-            />
+            <div className="create-event__addNremove-buttons">
+              <input
+                type="button"
+                value="+"
+                className="create-event__participants__add-button"
+                onClick={handleAddParticipant}
+              />
+              <input
+                type="button"
+                value="-"
+                className="create-event__participants__add-button"
+                onClick={handleRemoveParticipant}
+              />
+            </div>
           </div>
         </div>
 
