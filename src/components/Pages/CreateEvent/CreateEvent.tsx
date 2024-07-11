@@ -23,9 +23,12 @@ function CreateEvent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const API = 'http://localhost:3000/create-event';
+    const API = 'http://165.227.232.51:3000/create-event';
     const organizerId = authData?.user.id;
-    participants.push({ name: authData?.user.name, email: authData?.user.email });
+    participants.push({
+      name: authData?.user.name,
+      email: authData?.user.email,
+    });
     try {
       const eventResponse = await axios.post(API, {
         name,

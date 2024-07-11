@@ -17,7 +17,7 @@ function SignUp() {
     console.log('Password:', password);
     // API call
 
-    fetch('http://localhost:3000/register/', {
+    fetch('http://165.227.232.51:3000/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: {
