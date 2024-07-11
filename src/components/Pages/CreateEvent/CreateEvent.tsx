@@ -25,6 +25,7 @@ function CreateEvent() {
 
     const API = 'http://localhost:3000/create-event';
     const organizerId = authData?.user.id;
+    participants.push({ name: authData?.user.name, email: authData?.user.email });
     try {
       const eventResponse = await axios.post(API, {
         name,
