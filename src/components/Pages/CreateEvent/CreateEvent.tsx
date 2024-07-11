@@ -116,6 +116,9 @@ function CreateEvent() {
             id="eventDate"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            style={{
+              color: date ? 'black' : 'gray',
+            }}
           />
         </div>
 
