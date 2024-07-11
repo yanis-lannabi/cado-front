@@ -49,18 +49,26 @@ function CreateEvent() {
 
     // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = authData?.user.id;
-    participants.push({
-      name: authData?.user.name,
-      email: authData?.user.email,
-    });
+    // participants.push({
+    //   name: authData?.user.name,
+    //   email: authData?.user.email,
+    // });
 
     try {
-      const eventResponse = await axios.post(API, {
-        name,
-        date,
-        organizer_id: organizerId,
-        participants,
-      });
+      const eventResponse = await axios.post(
+        API,
+        {
+          name,
+          date,
+          organizer_id: organizerId,
+          participants,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authData?.token}`,
+          },
+        }
+      );
 
       console.log(eventResponse.data);
     } catch (error) {
