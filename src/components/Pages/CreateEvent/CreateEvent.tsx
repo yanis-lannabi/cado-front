@@ -17,7 +17,7 @@ function CreateEvent() {
     // Check if the last participant has any empty field
     if (!lastParticipant.name || !lastParticipant.email) {
       setErrorMessage(
-        "Veuillez remplir tous les champs du participant avant d'en ajouter un nouveau"
+        "Attention : il est nécessaire de remplir tous les champs d'un participant avant d'en ajouter un nouveau ;)"
       );
       return;
     }
@@ -29,6 +29,8 @@ function CreateEvent() {
     const newParticipant = [...participants];
     newParticipant.pop();
     setParticipants(newParticipant);
+    // we remove the error message if the line is deleted
+    setErrorMessage('');
   };
 
   const formattedDate = (date) => {
@@ -133,6 +135,10 @@ function CreateEvent() {
                     const newParticipants = [...participants];
                     newParticipants[i].name = e.target.value;
                     setParticipants(newParticipants);
+
+                    if (e.target.value && newParticipants[i].email) {
+                      setErrorMessage('');
+                    }
                   }}
                 />
                 <input
@@ -143,6 +149,10 @@ function CreateEvent() {
                     const newParticipants = [...participants];
                     newParticipants[i].email = e.target.value;
                     setParticipants(newParticipants);
+
+                    if (e.target.value && newParticipants[i].name) {
+                      setErrorMessage('');
+                    }
                   }}
                 />
               </div>
@@ -168,6 +178,8 @@ function CreateEvent() {
         <p className="create-event__mandatory-fields">
           * Les champs avec une astérisque sont obligatoires
         </p>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <input
           type="submit"
