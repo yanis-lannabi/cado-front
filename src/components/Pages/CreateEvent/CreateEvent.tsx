@@ -72,7 +72,7 @@ function CreateEvent() {
 
   return (
     <div className="create-event-page">
-      <h2>Créer mon évènement</h2>
+      <h1>Créer mon évènement</h1>
 
       <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">
