@@ -49,6 +49,15 @@ function CreateEvent() {
 
     // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = authData?.user.id;
+
+    const participantWithOrganizer = [
+      {
+        name: authData?.user.name,
+        email: authData?.user.email,
+      },
+      ...participants,
+    ];
+
     // participants.push({
     //   name: authData?.user.name,
     //   email: authData?.user.email,
@@ -61,7 +70,7 @@ function CreateEvent() {
           name,
           date,
           organizer_id: organizerId,
-          participants,
+          participants: participantWithOrganizer,
         },
         {
           headers: {
