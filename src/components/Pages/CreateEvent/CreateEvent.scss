@@ -75,3 +75,10 @@ input {
 #eventDate {
   color: grey;
 }
+
+// if the button is disabled, the background color is grey and the cursor is not allowed
+
+.create-event__validation-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

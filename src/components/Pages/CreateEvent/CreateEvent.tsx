@@ -12,6 +12,16 @@ function CreateEvent() {
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
 
   const handleAddParticipant = () => {
+    const lastParticipant = participants[participants.length - 1];
+
+    // Check if the last participant has any empty field
+    if (!lastParticipant.name || !lastParticipant.email) {
+      setErrorMessage(
+        "Veuillez remplir tous les champs du participant avant d'en ajouter un nouveau"
+      );
+      return;
+    }
+
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
@@ -24,11 +34,20 @@ function CreateEvent() {
     e.preventDefault();
 
     const API = 'http://165.227.232.51:3000/create-event';
+
+    // the name, date and participants fields must not be empty
+    if (!name || !date || !participants) {
+      setErrorMessage('Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+
+    // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = authData?.user.id;
     participants.push({
       name: authData?.user.name,
       email: authData?.user.email,
     });
+
     try {
       const eventResponse = await axios.post(API, {
         name,
@@ -37,13 +56,6 @@ function CreateEvent() {
         participants,
       });
 
-      // for (const participant of participants) {
-      //   const participantData = {
-      //     name: participant.name,
-      //     email: participant.email,
-      //   };
-
-      // const userResponse = await axios.post(usersAPI, participantData);
       console.log(eventResponse.data);
     } catch (error) {
       setErrorMessage(
@@ -130,6 +142,10 @@ function CreateEvent() {
           type="submit"
           className="create-event__validation-button"
           value="Valider"
+          // if a mandatory field is empty, the button is disabled
+          disabled={
+            !name || !date || participants.some((p) => !p.name || !p.email)
+          }
         />
       </form>
     </div>
