@@ -26,50 +26,29 @@ function PersonalData() {
     });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className="WebsiteName">
       <header className="Website__Title">
         <h1>Données personnelles</h1>
       </header>
       <div className="PersonalData">
-        <form>
-          <p>Nom</p>
-          <input
-            type="text"
-            name="nom"
-            value={userData.nom}
-            onChange={handleChange}
-          />
-          <p>Prénom</p>
-          <input
-            type="text"
-            name="prénom"
-            value={userData.prénom}
-            onChange={handleChange}
-          />
-          <p>Email</p>
-          <input
-            type="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-          />
-          <p>Mot de passe</p>
-          <input
-            type="password"
-            name="password"
-            value={userData.password}
-            onChange={handleChange}
-          />
-        </form>
+        <div>
+          <p>
+            <strong>Nom:</strong> {userData.nom}
+          </p>
+          <p>
+            <strong>Prénom:</strong> {userData.prénom}
+          </p>
+          <p>
+            <strong>Email:</strong> {userData.email}
+          </p>
+          <p>
+            <strong>Mot de passe:</strong> {userData.password}
+          </p>
+        </div>
+        {/* <button onClick={handleSave}>Enregistrer</button> 
+        Ce bouton sera utilisé si on met en place les modifications
+        de données personnelles */}
       </div>
     </div>
   );
