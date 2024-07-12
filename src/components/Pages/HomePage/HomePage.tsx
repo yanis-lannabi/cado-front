@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import homeImage from '../../../../public/FavIcon.png';
 
 import './HomePage.scss';
 
@@ -27,13 +26,12 @@ function HomePage() {
             Créez votre évènement dès maintenant !
           </h3>
 
-          <Link to="/se-connecter">
+          <Link to="/se-connecter" className="no-underline">
             <button type="button" className="account-creation-button">
               Créer mon compte
             </button>
           </Link>
         </div>
-        <img className="home__image" src={homeImage} alt="" />
       </div>
     </div>
   );

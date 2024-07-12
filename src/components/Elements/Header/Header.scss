@@ -1,17 +1,15 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1rem;
 
   .logo {
-
-    height: 5rem;
-
+    height: 5.5rem;
   }
 
   div {
     button {
-      margin-left: 10px;
+      margin-left: 3rem;
     }
   }
 }

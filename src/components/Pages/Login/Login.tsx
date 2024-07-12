@@ -54,12 +54,12 @@ function Login() {
   return (
     <div className="WebsiteName">
       <div className="Login">
-        <h2>Connectez-vous à votre compte</h2>
+        <h2 className="Login_h2">Connectez-vous à votre compte</h2>
         {errorMessage && (
           <div className="Login__errorMessage">{errorMessage}</div>
         )}
         {emailError && <div className="Login__emailError">{emailError}</div>}
-        <form onSubmit={handleSubmit}>
+        <form className="Login__Form" onSubmit={handleSubmit}>
           <div className="Login__email">
             <input
               type="email"

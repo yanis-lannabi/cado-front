@@ -12,10 +12,15 @@
   margin: auto;
   border-radius: 0.5rem;
   background-color: #f0c87e;
+  margin-bottom: 6.3rem;
 }
 
-h2 {
+.Website__h2 {
   margin: 2.5rem;
+}
+
+.Website__h2 {
+  font-size: 2rem;
 }
 .SignUp__confirmation {
   display: flex;
@@ -29,6 +34,7 @@ h2 {
   border: none;
   background: #000000;
   color: #dfdedf;
+  font-size: 1.5rem;
 }
 
 .Website__title {
@@ -60,4 +66,20 @@ h2 {
 
 input {
   background-color: white;
+}
+
+.Website {
+  text-align: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url('/src/assets/13.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.Input {
+  font-size: 1.3rem;
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './FAQ.scss';
-import cadeauImage from '../../../assets/CADEAU1.jpeg';
 
 const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
@@ -66,7 +65,6 @@ const FAQ: React.FC = () => {
           </div>
         ))}
       </div>
-      <img src={cadeauImage} alt="dessin de cadeaux" />
     </article>
   );
 };
