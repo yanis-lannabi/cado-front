@@ -84,7 +84,7 @@ function CreateEvent() {
       console.log(eventResponse.data);
     } catch (error) {
       setErrorMessage(
-        "Une erreur est survenue lors de la création de l'évènement"
+        "Désolée... Une erreur est survenue lors de la création de l'évènement"
       );
     }
   };
@@ -168,12 +168,14 @@ function CreateEvent() {
                 className="create-event__participants__add-button"
                 onClick={handleAddParticipant}
               />
-              <input
-                type="button"
-                value="-"
-                className="create-event__participants__add-button"
-                onClick={handleRemoveParticipant}
-              />
+              {participants.length > 1 && (
+                <input
+                  type="button"
+                  value="-"
+                  className="create-event__participants__add-button"
+                  onClick={handleRemoveParticipant}
+                />
+              )}
             </div>
           </div>
         </div>
