@@ -84,7 +84,7 @@ function CreateEvent() {
       console.log(eventResponse.data);
     } catch (error) {
       setErrorMessage(
-        "Désolée... Une erreur est survenue lors de la création de l'évènement"
+        "Nous sommes désolés... Une erreur est survenue lors de la création de l'évènement"
       );
     }
   };
