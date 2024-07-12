@@ -1,4 +1,4 @@
-import './MyEvent.scss';
+import './MyEvents.scss';
 // import Header from '../../Elements/Header/Header';
 // import Footer from '../../Elements/Footer/Footer';
 

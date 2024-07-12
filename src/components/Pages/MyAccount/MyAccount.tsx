@@ -1,35 +1,42 @@
+// Importing necessary libraries and components
 import './MyAccount.scss';
+import { Link } from 'react-router-dom';
+// src/components/Pages/MyAccount/MyAccount.tsx
 
-import Header from '../../Elements/Header/Header';
-import Footer from '../../Elements/Footer/Footer';
+import { useAuth } from '../../../Hooks/useAuth';
 
-function MyAccount() {
+const MyAccount = () => {
+  const { authData } = useAuth();
+
+  if (!authData || !authData.user) {
+    return <div>Veuillez vous connecter.</div>;
+  }
+
   return (
     <div className="MyAccount">
-      <Header />
       <header className="MyAccount-title">
         <h1>Mon compte</h1>
       </header>
-      <p className="MyAccount-WelcomeMessage">Bienvenue [prénom]!</p>
-      <p className="MyAccount-EventsMessage">
-        Vous êtes inscrit(e) depuis le [date] et avez organisé à ce jour
-        [quantité] évènement(s).
+      <p className="MyAccount-WelcomeMessage">
+        Bienvenue {authData.user.name.toUpperCase()}!
       </p>
       <h2>IMAGE A TROUVER</h2>
       <div className="MyAccount__Buttons">
-        <button className="MyAccount__personalData" type="submit">
+        <Link
+          to="/mes-donnees-personnelles"
+          className="MyAccount__personalData"
+        >
           Données personnelles
-        </button>
-        <button className="MyAccount__MyEvents" type="submit">
+        </Link>
+        <Link to="/mes-evenements" className="MyAccount__MyEvents">
           Mes évènements
-        </button>
-        <button className="MyAccount__CreateEvent" type="submit">
+        </Link>
+        <Link to="/creer-un-evenement" className="MyAccount__CreateEvent">
           Nouvel évènement
-        </button>
+        </Link>
       </div>
-      <Footer />
     </div>
   );
-}
+};
 
 export default MyAccount;

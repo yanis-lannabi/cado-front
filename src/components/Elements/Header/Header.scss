@@ -1,21 +1,17 @@
-
 .header {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
 
-  &__logo {
-    margin: 1rem;
-    width: 10rem;
+  .logo {
+
+    height: 5rem;
+
   }
 
-  &__button {
-    display: flex;
-    height: 3rem;
-    font-size: 1.5rem;
-    margin: 2rem;
-    padding: 0.2rem 1.9rem;
-    border-radius: 0.5rem;
-    background: #000000;
-    color: #dfdedf;
+  div {
+    button {
+      margin-left: 10px;
+    }
   }
-
+}
