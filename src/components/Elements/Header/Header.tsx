@@ -48,6 +48,7 @@ const Header: React.FC = () => {
       <Link to="/">
         <img src={logo} alt="Logo" className="logo" />
       </Link>
+      {/* <h1 className="message__bienvenue">Bienvenue MACHIN</h1> */}
       {buttons}
     </header>
   );

@@ -1,11 +1,13 @@
 // Importing necessary libraries and components
 import './MyAccount.scss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // src/components/Pages/MyAccount/MyAccount.tsx
 
 import { useAuth } from '../../../Hooks/useAuth';
 
 const MyAccount = () => {
+  const navigate = useNavigate();
+
   const { authData } = useAuth();
 
   if (!authData || !authData.user) {
@@ -20,20 +22,27 @@ const MyAccount = () => {
       <p className="MyAccount-WelcomeMessage">
         Bienvenue {authData.user.name.toUpperCase()}!
       </p>
-      <h2>IMAGE A TROUVER</h2>
       <div className="MyAccount__Buttons">
-        <Link
-          to="/mes-donnees-personnelles"
+        <button
           className="MyAccount__personalData"
+          onClick={() => navigate('/mes-donnees-personnelles')}
         >
           Données personnelles
-        </Link>
-        <Link to="/mes-evenements" className="MyAccount__MyEvents">
+        </button>
+
+        <button
+          className="MyAccount__MyEvents"
+          onClick={() => navigate('/mes-evenements')}
+        >
           Mes évènements
-        </Link>
-        <Link to="/creer-un-evenement" className="MyAccount__CreateEvent">
-          Nouvel évènement
-        </Link>
+        </button>
+
+        <button
+          className="MyAccount__CreateEvent"
+          onClick={() => navigate('/creer-un-evenement')}
+        >
+          Créer un évènement
+        </button>
       </div>
     </div>
   );

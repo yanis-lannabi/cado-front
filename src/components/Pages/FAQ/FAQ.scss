@@ -23,16 +23,23 @@ h3 {
   //margin-left: 1rem;
   background-color: #c69b70;
   width: 50%;
-  padding: 0.5rem;
+  padding-bottom: 20.5rem;
 }
 
 .FAQ-content {
   margin-left: 7rem;
+  margin-right: 2rem;
 }
 
 .faq-container {
   display: flex;
   justify-content: space-between;
+  background-image: url('/src/assets/24.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
+  //padding-bottom: 18.8vh;
 }
 
 .faq-question {

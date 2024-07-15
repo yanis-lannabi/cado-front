@@ -33,4 +33,19 @@ button {
   background: #000000;
   color: #dfdedf;
   font-size: 1.4rem;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 10px 5px 5px rgb(90, 89, 89);
+  }
 }
+
+// body {
+//   background-image: linear-gradient(
+//       rgba(255, 255, 255, 0.5),
+//       rgba(255, 255, 255, 0.5)
+//     ),
+//     url('/src/assets/14.jpeg');
+//   background-repeat: no-repeat;
+
+//   background-size: cover;
+// }

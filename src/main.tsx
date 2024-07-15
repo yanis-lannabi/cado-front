@@ -18,15 +18,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Elements/Header/Header';
 import Footer from './components/Elements/Footer/Footer';
 
-
 import './styles/index.scss';
-
 
 const App = () => {
   return (
     <Router>
       <Header />
-
       <Routes>
         <Route path="/se-connecter" element={<Login />} />
         <Route path="/s-inscrire" element={<SignUp />} />
@@ -68,4 +65,3 @@ const App = () => {
 };
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
-
