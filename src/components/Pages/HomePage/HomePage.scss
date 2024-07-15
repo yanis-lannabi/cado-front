@@ -41,16 +41,6 @@
   margin: 2rem;
 }
 
-button {
-  display: flex;
-  margin: 2rem auto;
-  padding: 0.2rem 1.9rem;
-  border-radius: 0.5rem;
-  background: #000000;
-  color: #dfdedf;
-  cursor: pointer;
-}
-
 .home {
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.5),
@@ -64,4 +54,16 @@ button {
 
 .no-underline {
   text-decoration: none;
+}
+
+// Les tailles standards à prendre en compte sont : De 480 à 720 px pour les téléphones mobiles.
+@media (max-width: 720px) {
+  .home__title {
+    font-size: 3rem;
+    width: 80%;
+  }
+  .home__concept-explaination {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

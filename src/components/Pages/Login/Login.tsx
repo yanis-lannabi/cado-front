@@ -54,7 +54,7 @@ function Login() {
   return (
     <div className="WebsiteName">
       <div className="Login">
-        <h2 className="Login_h2">Connectez-vous à votre compte</h2>
+        <h2 className="Login__h2">Connectez-vous à votre compte</h2>
         {errorMessage && (
           <div className="Login__errorMessage">{errorMessage}</div>
         )}

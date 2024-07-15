@@ -24,3 +24,13 @@ button,
 a {
   cursor: pointer;
 }
+
+button {
+  display: flex;
+  margin: 2rem auto;
+  padding: 0.2rem 1.9rem;
+  border-radius: 0.5rem;
+  background: #000000;
+  color: #dfdedf;
+  font-size: 1.4rem;
+}

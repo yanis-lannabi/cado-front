@@ -17,24 +17,16 @@
 
 .Website__h2 {
   margin: 2.5rem;
-}
-
-.Website__h2 {
   font-size: 2rem;
 }
 .SignUp__confirmation {
   display: flex;
-  flex-direction: row;
-  margin: auto;
-  margin-bottom: 2.5rem;
-  margin-top: 2.5rem;
-  width: auto;
-  padding: 0.2rem 2.5rem;
-  border-radius: 0.2rem;
-  border: none;
+  margin: 2rem auto;
+  padding: 0.2rem 1.9rem;
+  border-radius: 0.5rem;
   background: #000000;
   color: #dfdedf;
-  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .Website__title {
@@ -82,4 +74,16 @@ input {
 
 .Input {
   font-size: 1.3rem;
+}
+
+@media (max-width: 720px) {
+  .Website__h1 {
+    font-size: 2rem;
+    width: 80%;
+  }
+  .SignUp {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
