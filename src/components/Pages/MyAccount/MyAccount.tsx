@@ -20,7 +20,10 @@ const MyAccount = () => {
         <h1>Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
-        Bienvenue {authData.user.name.toUpperCase()}!
+        Bienvenue{' '}
+        {authData.user.name.charAt(0).toUpperCase() +
+          authData.user.name.slice(1).toLowerCase()}
+        !
       </p>
       <h2>IMAGE A TROUVER</h2>
       <div className="MyAccount__Buttons">
