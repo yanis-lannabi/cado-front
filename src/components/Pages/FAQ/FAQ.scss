@@ -28,7 +28,8 @@ h3 {
 
 .FAQ-content {
   margin-left: 7rem;
-  margin-right: 2rem;
+  //margin-right: 2rem;
+  width: 80%;
 }
 
 .faq-container {
@@ -44,4 +45,21 @@ h3 {
 
 .faq-question {
   cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .faq-container {
+    background-image: none;
+  }
+  .FAQ-category {
+    width: 100%;
+  }
+  .FAQ-title {
+    font-size: 2rem;
+  }
+  .faq-question,
+  .FAQ-content {
+    margin-left: 0.5rem;
+    width: 90%;
+  }
 }

@@ -8,7 +8,7 @@ const FAQ: React.FC = () => {
     {
       question: "Qu'est-ce que Secret Santa ?",
       answer:
-        "Secret Santa est un organisateur d'échange des cadeaux gratuit en ligne! Organisez une Secret Santa party avec des amis, de la famille ou même entre collègues. Chaque année, autour de la période de des fêtes, les personnes du monde entier s'échangent des cadeaux. Pour garder les choses intéressantes, vous pouvez associer une personne à une autre au hasard, afin de s'offrir des cadeaux.",
+        "Secret Santa est un organisateur d'échange des cadeaux gratuit en ligne! Organisez une Secret Santa party avec des amis, de la famille ou même entre collègues. Chaque année, des personnes du monde entier s'échangent des cadeaux.",
     },
     {
       question:
