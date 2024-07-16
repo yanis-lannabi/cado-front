@@ -59,3 +59,11 @@ h2 {
 .MyAccount__Buttons {
   margin-top: 5rem;
 }
+
+@media (max-width: 720px) {
+  .MyAccount__h1 {
+    font-size: 3rem;
+    width: 80%;
+    margin: auto;
+  }
+}

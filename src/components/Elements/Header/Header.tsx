@@ -45,10 +45,13 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/">
+      {location.pathname === '/' ? (
         <img src={logo} alt="Logo" className="logo" />
-      </Link>
-      {/* <h1 className="message__bienvenue">Bienvenue MACHIN</h1> */}
+      ) : (
+        <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
+      )}
       {buttons}
     </header>
   );
