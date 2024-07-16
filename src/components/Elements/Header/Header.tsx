@@ -73,9 +73,13 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/">
+      {location.pathname === '/' ? (
         <img src={logo} alt="Logo" className="logo" />
-      </Link>
+      ) : (
+        <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
+      )}
       {buttons}
     </header>
   );
