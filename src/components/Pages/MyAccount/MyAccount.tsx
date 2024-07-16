@@ -11,14 +11,15 @@ const MyAccount = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://165.227.232.51:3000/me/', {
+        const response = await fetch('https://cado.zapto.org/me', {
           method: 'GET',
           credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
         });
 
         const data = await response.json();
+        console.log('data', data);
         if (response.ok) {
-          setUser(data.user); // Stockez les informations utilisateur
+          setUser(data); // Stockez les informations utilisateur
         } else {
           setError(data.message);
         }
@@ -37,7 +38,9 @@ const MyAccount = () => {
       </header>
       <p className="MyAccount-WelcomeMessage">
         Bienvenue
-        {user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}!
+        {user?.name?.charAt(0).toUpperCase() +
+          user?.name?.slice(1).toLowerCase()}
+        !
       </p>
 
       <div className="MyAccount__Buttons">
