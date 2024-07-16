@@ -2,7 +2,7 @@ import './LegalNotices.scss';
 function LegalNotices() {
   return (
     <article className="LegalNotices">
-      <h3 className="LegalNotices-title">Mention légales:</h3>
+      <h3 className="LegalNotices-title">Mentions légales :</h3>
       <h5 className="LegalNotices-date">En vigueur au 19/07/2024</h5>
       <p className="LegalNotices-preface">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
