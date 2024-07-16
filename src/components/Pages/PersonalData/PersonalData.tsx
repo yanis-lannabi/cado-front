@@ -44,6 +44,7 @@ function PersonalData() {
           </p>
           <p>
             <strong>Mot de passe:</strong> {userData.password}
+            {/* Afficher le mot de passe en texte brut n'est généralement pas une bonne pratique pour des raisons de sécurité. Même si c'est sur le côté client, cela peut toujours poser des problèmes de sécurité, surtout si l'écran est visible par d'autres personnes. Vous devriez envisager de ne pas afficher le mot de passe ou de le masquer d'une manière ou d'une autre. */}
           </p>
         </div>
         {/* <button onClick={handleSave}>Enregistrer</button> 
