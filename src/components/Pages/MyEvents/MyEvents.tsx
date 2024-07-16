@@ -1,12 +1,27 @@
 import './MyEvents.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function MyEvent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
 
-  const handleEventClick = (event) => {
+  const handleEventClick = (event: any) => {
     setSelectedEvent(event);
   };
+
+  const fetchEvents = async () => {
+    try {
+      const response = await fetch('http://165.227.232.51:3000/me');
+      const data = await response.json();
+      setEvents(data);
+    } catch (error) {
+      console.error('Erreur lors du chargement des événements:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <div className="WebsiteName">
@@ -14,23 +29,20 @@ function MyEvent() {
         <h1>Mes évènements</h1>
       </header>
       <div className="MyEvent">
-        <button type="button" onClick={() => handleEventClick('Événement 1')}>
-          Événements 1
-        </button>
-        <button type="button" onClick={() => handleEventClick('Événement 2')}>
-          Événements 2
-        </button>
-        <button type="button" onClick={() => handleEventClick('Événement 3')}>
-          Événements 3
-        </button>
-        <button type="button" onClick={() => handleEventClick('Événement 4')}>
-          Événements 4
-        </button>
+        {events.map((event: { name: string }, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => handleEventClick(event)}
+          >
+            {event.name}
+          </button>
+        ))}
 
         {selectedEvent && (
           <div>
-            <h2>{selectedEvent}</h2>
-            <p>Détails de l&apos;événement...</p>
+            <h2>{(selectedEvent as any).name}</h2>
+            <p>{(selectedEvent as any).details}</p>
           </div>
         )}
 
@@ -43,4 +55,5 @@ function MyEvent() {
   );
 }
 
+// là où on récupère les events, il faut des propriétés name et details
 export default MyEvent;
