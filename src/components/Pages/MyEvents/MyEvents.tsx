@@ -1,9 +1,11 @@
 import './MyEvents.scss';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 function MyEvent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
 
   const handleEventClick = (event: any) => {
     setSelectedEvent(event);
@@ -47,7 +49,11 @@ function MyEvent() {
         )}
 
         <h2>Nouvel événement</h2>
-        <button className="MyEvent__confirmation" type="submit">
+        <button
+          type="button"
+          className="account-creation-button"
+          onClick={() => navigate('/creer-un-evenement')}
+        >
           Créer un événement
         </button>
       </div>
