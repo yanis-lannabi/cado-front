@@ -27,7 +27,8 @@ function MyEvent() {
       });
       const data = await response.json();
       console.log(data);
-      setEvents(JSON.parse(data));
+      setEvents(data.events);
+      console.log(data);
     } catch (error) {
       console.error('Erreur lors du chargement des événements:', error);
     }
