@@ -36,16 +36,7 @@ function MyEvent({ user }) {
 
   useEffect(() => {
     fetchEvents();
-    if (user && user.events) {
-      user.events.forEach((event: any) => {
-        // Explicitly type 'event' as any
-        const participantNames = event.participants.map(
-          (participant: any) => participant.name
-        );
-        console.log(participantNames);
-      });
-    }
-  }, []);
+  }, [user]);
 
   return (
     <div className="WebsiteName">
@@ -67,7 +58,16 @@ function MyEvent({ user }) {
           <div>
             <h2>{(selectedEvent as any).name}</h2>
             <p>{(selectedEvent as any).date}</p>
-            <p>{(selectedEvent as any).participant}</p>
+            <h3>Participants:</h3>
+            <ul>
+              {selectedEvent.participants.map(
+                (participant: any, index: any) => (
+                  <li key={index}>
+                    {participant.name} - {participant.email}
+                  </li>
+                )
+              )}
+            </ul>
           </div>
         )}
 
