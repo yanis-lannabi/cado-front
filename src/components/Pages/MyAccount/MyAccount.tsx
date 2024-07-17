@@ -31,11 +31,7 @@ const MyAccount = () => {
         <h1 className="MyAccount__h1">Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
-<<<<<<< HEAD
-        Bienvenue
-=======
         Bienvenue {''}
->>>>>>> e8c7e39dee7c2b785ffc25ab5144ab2990f8c02f
         {user?.name?.charAt(0).toUpperCase() +
           user?.name?.slice(1).toLowerCase()}
         !
