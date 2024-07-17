@@ -1,26 +1,78 @@
 import './MyEvents.scss';
-// import Header from '../../Elements/Header/Header';
-// import Footer from '../../Elements/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+// interface Event {
+//   id: number;
+//   name: string;
+//   date: string;
+//   // Autres données ?
+// }
 
 function MyEvent() {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
+
+  const handleEventClick = (event: any) => {
+    setSelectedEvent(event);
+  };
+
+  const fetchEvents = async () => {
+    try {
+      const response = await fetch('https://cado.zapto.org/me', {
+        // à vérifier pour fetch les bonnes données des événements
+        method: 'GET',
+        credentials: 'include',
+      });
+      const data = await response.json();
+      console.log(data);
+      setEvents(data.events);
+      console.log(data);
+    } catch (error) {
+      console.error('Erreur lors du chargement des événements:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
   return (
     <div className="WebsiteName">
       <header className="Website__Title">
         <h1>Mes évènements</h1>
       </header>
       <div className="MyEvent">
-        <p>Evenements 1</p>
-        <p>Evenements 2</p>
-        <p>Evenements 3</p>
-        <p>Evenements 4</p>
+        {events.map((event: { name: string }, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => handleEventClick(event)}
+          >
+            {event.name}
+          </button>
+        ))}
 
-        <h2>Nouvel évènement</h2>
-        <button className="MyEvent__confirmation" type="submit">
-          Créer un évènement
+        {selectedEvent && (
+          <div>
+            <h2>{(selectedEvent as any).name}</h2>
+            <p>{(selectedEvent as any).details}</p>
+          </div>
+        )}
+
+        <h2>Nouvel événement</h2>
+        <button
+          type="button"
+          className="account-creation-button"
+          onClick={() => navigate('/creer-un-evenement')}
+        >
+          Créer un événement
         </button>
       </div>
     </div>
   );
 }
 
+// là où on récupère les events, il faut des propriétés name et details
 export default MyEvent;
