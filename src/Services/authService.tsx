@@ -1,5 +1,4 @@
-// src/services/authService.ts
-
+// src/ceeirssv / authService.ts;
 export interface AuthResponse {
   user: {
     id: number;
@@ -8,13 +7,12 @@ export interface AuthResponse {
   };
   token: string;
 }
-
 export const login = async (
   email: string,
   password: string
 ): Promise<AuthResponse> => {
   // http://165.227.232.51/:3000/login/ API
-  const response = await fetch('http://165.227.232.51/:3000/login/', {
+  const response = await fetch('https://cado.zapto.org/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,12 +21,10 @@ export const login = async (
     body: JSON.stringify({ email, password }),
     credentials: 'include',
   });
-
   if (!response.ok) {
     const message = await response.json();
     throw new Error(message.message);
   }
-
   const data = await response.json();
   return {
     user: {
