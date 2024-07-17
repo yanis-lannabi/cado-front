@@ -7,7 +7,10 @@ const PersonalData = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('https://cado.zapto.org/me');
+        const response = await fetch('https://cado.zapto.org/me', {
+          method: 'GET',
+          credentials: 'include',
+        });
         const data = await response.json();
         setUserData({ name: data.name, email: data.email });
       } catch (error) {
