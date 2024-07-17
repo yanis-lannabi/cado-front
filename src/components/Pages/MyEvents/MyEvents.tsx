@@ -2,6 +2,13 @@ import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
+// interface Event {
+//   id: number;
+//   name: string;
+//   date: string;
+//   // Autres données ?
+// }
+
 function MyEvent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
