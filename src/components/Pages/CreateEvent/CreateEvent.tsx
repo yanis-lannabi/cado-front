@@ -1,15 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CreateEvent.scss';
-import { useAuth } from '../../../Hooks/useAuth';
 
 function CreateEvent() {
-  const { authData } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
-
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
+  const [user, setUser] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('https://cado.zapto.org/me', {
+          method: 'GET',
+          credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
+        });
+        const data = await response.json();
+        console.log('data', data);
+        if (response.ok) {
+          setUser(data); // Stockez les informations utilisateur
+        } else {
+          setErrorMessage(data.message);
+        }
+      } catch (err) {
+        setErrorMessage('An error occurred. Please try again.');
+      }
+    };
+    fetchUserData();
+  }, []);
 
   const handleAddParticipant = () => {
     const lastParticipant = participants[participants.length - 1];
@@ -40,8 +58,7 @@ function CreateEvent() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const API = 'http://165.227.232.51:3000/create-event';
+    const API = 'https://cado.zapto.org/create-event';
 
     // the name, date and participants fields must not be empty
     if (!name || !date || !participants) {
@@ -50,12 +67,12 @@ function CreateEvent() {
     }
 
     // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
-    const organizerId = authData?.user.id;
+    const organizerId = user.id;
 
     const participantWithOrganizer = [
       {
-        name: authData?.user.name,
-        email: authData?.user.email,
+        name: user.name,
+        email: user.email,
       },
       ...participants,
     ];
@@ -76,7 +93,7 @@ function CreateEvent() {
         },
         {
           headers: {
-            Authorization: `Bearer ${authData?.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );

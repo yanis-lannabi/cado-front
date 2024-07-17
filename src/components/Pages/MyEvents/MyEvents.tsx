@@ -57,7 +57,8 @@ function MyEvent() {
         {selectedEvent && (
           <div>
             <h2>{(selectedEvent as any).name}</h2>
-            <p>{(selectedEvent as any).details}</p>
+            <p>{(selectedEvent as any).date}</p>
+            <p>{(selectedEvent as any).participant}</p>
           </div>
         )}
 
