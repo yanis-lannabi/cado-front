@@ -1,6 +1,6 @@
 import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function MyEvent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -13,10 +13,13 @@ function MyEvent() {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://165.227.232.51:3000/me');
-      // https://cado.zapto.org/me mais non fonctionnel pour le moment
+      const response = await fetch('https://cado.zapto.org/me', {
+        method: 'GET',
+        credentials: 'include',
+      });
       const data = await response.json();
-      setEvents(data);
+      console.log(data);
+      setEvents(JSON.parse(data));
     } catch (error) {
       console.error('Erreur lors du chargement des événements:', error);
     }
