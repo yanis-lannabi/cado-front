@@ -7,7 +7,8 @@
   font-size: 2.5rem;
 }
 
-h3 {
+.faq-question {
+  cursor: pointer;
   margin-bottom: 0.6rem;
   margin-left: 2rem;
   margin-top: 1rem;
@@ -41,10 +42,6 @@ h3 {
   overflow: hidden;
   background-attachment: fixed;
   //padding-bottom: 18.8vh;
-}
-
-.faq-question {
-  cursor: pointer;
 }
 
 @media (max-width: 720px) {
