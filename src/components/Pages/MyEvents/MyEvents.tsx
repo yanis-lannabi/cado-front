@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 //   // Autres données ?
 // }
 
-function MyEvent() {
+function MyEvent({ user }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
@@ -36,6 +36,15 @@ function MyEvent() {
 
   useEffect(() => {
     fetchEvents();
+    if (user && user.events) {
+      user.events.forEach((event: any) => {
+        // Explicitly type 'event' as any
+        const participantNames = event.participants.map(
+          (participant: any) => participant.name
+        );
+        console.log(participantNames);
+      });
+    }
   }, []);
 
   return (
