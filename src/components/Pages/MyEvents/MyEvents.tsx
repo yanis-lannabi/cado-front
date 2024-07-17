@@ -14,6 +14,7 @@ function MyEvent() {
   const fetchEvents = async () => {
     try {
       const response = await fetch('https://cado.zapto.org/me', {
+        // à vérifier pour fetch les bonnes données des événements
         method: 'GET',
         credentials: 'include',
       });
