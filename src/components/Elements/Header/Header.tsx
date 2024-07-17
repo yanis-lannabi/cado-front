@@ -54,9 +54,13 @@ const Header: React.FC = () => {
     ].includes(location.pathname)
   ) {
     buttons = (
-      <div>
-        <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={logout}>Déconnexion</button>{' '}
+      <div className="Buttons-container">
+        <button className="Button" onClick={() => navigate('/mon-compte')}>
+          Mon Compte
+        </button>
+        <button className="Button" onClick={logout}>
+          Déconnexion
+        </button>{' '}
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
