@@ -3,13 +3,11 @@ import './SignUp.scss';
 import React, { useState } from 'react';
 // import Header from '../../Elements/Header/Header';
 // import Footer from '../../Elements/Footer/Footer';
-
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState('');
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('name:', name);
@@ -43,7 +41,6 @@ function SignUp() {
         setPassword('');
       });
   };
-
   return (
     <div className="WebsiteName">
       <header className="Website__title">
@@ -70,7 +67,6 @@ function SignUp() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
           <label htmlFor="password">Mot de passe:</label>
           <input
             className="SignUp__password"
@@ -81,9 +77,8 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {signUpStatus && <p>{signUpStatus}</p>}
-
           <button className="SignUp__confirmation" type="submit">
-            S&apos;inscrire
+            S'inscrire
           </button>
         </form>
       </div>

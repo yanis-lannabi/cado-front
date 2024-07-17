@@ -1,13 +1,10 @@
 import './MyAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
 const MyAccount = () => {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
-
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -15,7 +12,6 @@ const MyAccount = () => {
           method: 'GET',
           credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
         });
-
         const data = await response.json();
         console.log('data', data);
         if (response.ok) {
@@ -27,22 +23,23 @@ const MyAccount = () => {
         setError('An error occurred. Please try again.');
       }
     };
-
     fetchUserData();
   }, []);
-
   return (
     <div className="MyAccount">
       <header className="MyAccount-title">
         <h1 className="MyAccount__h1">Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
+<<<<<<< HEAD
         Bienvenue
+=======
+        Bienvenue {''}
+>>>>>>> e8c7e39dee7c2b785ffc25ab5144ab2990f8c02f
         {user?.name?.charAt(0).toUpperCase() +
           user?.name?.slice(1).toLowerCase()}
         !
       </p>
-
       <div className="MyAccount__Buttons">
         <button
           className="MyAccount__personalData"
