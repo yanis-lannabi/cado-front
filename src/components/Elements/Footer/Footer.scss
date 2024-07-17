@@ -1,15 +1,22 @@
+
+@use '../../../styles/variables' as v;
+
 .footer {
   display: flex;
   justify-content: center;
-  padding: 20px;
-
+  padding: 1.5rem;
   position: relative;
-  left: 0;
   bottom: 0;
   width: 100%;
-
+  background-color: black;
+  color: v.$color-bg;
   div {
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
   }
 }
+
+a {
+  color: v.$color-bg;
+}
+

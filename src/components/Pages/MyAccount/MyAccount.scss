@@ -62,3 +62,13 @@ h2 {
   font-size: 2rem;
   color: #333;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.MyAccount-WelcomeMessage {
+  color: #ffc547; /* Une couleur rouge-orange vif */
+  font-size: 3em; /* Une taille de police plus grande pour plus d'impact */
+  text-shadow: 2px 2px 4px #000000; /* Une ombre portée pour donner du relief au texte */
+}

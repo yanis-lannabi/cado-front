@@ -1,4 +1,4 @@
-h1 {
+.create-event-h1 {
   margin: 5rem auto;
   width: 50%;
   text-align: center;
@@ -10,10 +10,12 @@ h1 {
   flex-direction: column;
   margin: 5rem auto;
   padding: 2rem;
-  width: 70%;
+  width: 50%;
   border: 1px solid black;
   border-radius: 1rem;
   background-color: #ffffff;
+  border: solid black 0.4rem;
+  background-color: #f0c87e;
 
   &__element {
     display: flex;
@@ -25,7 +27,7 @@ h1 {
 
   &__element-title {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-right: 1rem;
   }
 
@@ -33,8 +35,16 @@ h1 {
     display: flex;
     flex-direction: column;
 
-    &__add-button {
+    &__addNremove-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__add-button,
+    &__remove-button {
       margin: auto;
+      margin-left: 1rem;
       width: 4rem;
       border-radius: 0.5rem;
       background: #d3d3d3;
@@ -69,9 +79,28 @@ h1 {
 input {
   margin: 0 1rem;
   padding: 0.3rem 1rem;
+  width: 15rem;
   // border-radius: 0.2rem;
 }
 
 #eventDate {
   color: grey;
+}
+
+// if the button is disabled, the background color is grey and the cursor is not allowed
+
+.create-event__validation-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin: auto;
+  padding: 0.8rem 2rem;
+  color: rgb(238, 59, 59);
+  font-weight: bold;
+  border: 3px solid lightcoral;
+  padding: '10px';
+  border-radius: '5px';
+  background-color: #ffeae5;
 }
