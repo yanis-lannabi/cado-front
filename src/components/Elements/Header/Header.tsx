@@ -31,11 +31,7 @@ const Header: React.FC = () => {
   };
 
   let buttons;
-  if (
-    ['/', '/s-inscrire', '/resultat', '/mentions-legales', '/faq'].includes(
-      location.pathname
-    )
-  ) {
+  if (['/', '/s-inscrire', '/resultat'].includes(location.pathname)) {
     buttons = (
       <div>
         <button
@@ -53,6 +49,8 @@ const Header: React.FC = () => {
       '/mes-evenements',
       '/creer-un-evenement',
       '/details-evenement',
+      '/faq',
+      '/mentions-legales',
     ].includes(location.pathname)
   ) {
     buttons = (
