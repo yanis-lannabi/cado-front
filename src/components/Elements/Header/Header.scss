@@ -15,8 +15,17 @@
   }
 }
 
-// .message__bienvenue {
-//   text-align: center;
-//   margin-top: 4rem;
-//   margin-bottom: 5rem;
-// }
+.Buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 720px) {
+  .Buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .Button {
+    margin: 0.5rem auto;
+  }
+}
