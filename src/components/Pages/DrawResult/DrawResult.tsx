@@ -5,13 +5,21 @@ import './DrawResult.scss';
 const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
 
 // preparing the code for when the draw API is ready
-// interface Participant {
+// interface Giver {
+//   giverName: string;
+// }
+//
+// interface Participants [{
 //   participantName: string;
+// }]
+//
+// interface Receiver {
+//   receiverName: string;
 // }
 
 interface Event {
-  eventName: string;
-  eventDate: string;
+  name: string;
+  date: string;
 }
 
 function DrawResult() {
@@ -20,9 +28,10 @@ function DrawResult() {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  //states specific to the event
-  const [event, setEvent] = useState<Event | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  // preparing the code for when the draw API is ready
+  // //states specific to the event
+  // const [event, setEvent] = useState<Event | null>(null);
+  // const [error, setError] = useState<string | null>(null);
 
   const handleDraw = (e) => {
     e.preventDefault();
@@ -47,36 +56,40 @@ function DrawResult() {
   };
 
   // preparing the code for when the draw API is ready
+  // const fetchEvent = async () => {
+  //   try {
+  //     const response = await fetch('https://cado.zapto.org/me', {
+  //       // à vérifier pour fetch les bonnes données des événements
+  //       method: 'GET',
+  //       credentials: 'include',
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setEvent(data.events);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Erreur lors du chargement des événements:', error);
+  //   }
+  // };
+
   // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // Effectue la requête API et met à jour l'état de l'événement avec les données reçues
-  //       const response = await fetch('https://cado.zapto.org/create-event');
-  //       const data = await response.json();
-  //       setEvent(data);
-  //     } catch (error) {
-  //       // En cas d'erreur, met à jour l'état de l'erreur avec un message d'erreur
-  //       setError(
-  //         'Nous sommes désolés, une erreur est survenue lors du chargement des données.'
-  //       );
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  // if (error) {
-  //   return <div className="draw-result__error-message">{error}</div>;
-  // }
-
-  // // if data is not loaded yet, return "Loading..."
-  // if (!event) {
-  //   return <div className="draw-result__loading-message">Loading...</div>;
-  // }
+  //   fetchEvent();
+  // }, [user]);
 
   return (
     <div className="draw-result-page">
       <h1 className="draw-result__title">Bienvenue (prénom) !</h1>
+      {/* for when the API is ready */}
+      {/* <h1 className="draw-result__title">Bienvenue {giver.name} !</h1> */}
+
+      <p className="draw-text">
+        Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le
+        (JJ/MM/AAAA).
+      </p>
+      {/* for when the API is ready */}
+      {/* <p className="event-details">
+        Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le (JJ/MM/AAAA).
+      </p> */}
 
       <p className="draw-text">
         {' '}
@@ -96,10 +109,6 @@ function DrawResult() {
           <p className="result"> {participants[currentIndex]} </p>
         ) : null}
       </div>
-
-      <a className="event-link" href="/details-evenement">
-        Voir le détail de l'évènement
-      </a>
     </div>
   );
 }

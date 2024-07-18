@@ -25,6 +25,7 @@
   width: 70%;
   text-align: center;
   font-size: 1.3rem;
+  font-weight: bold;
 }
 
 .draw-roulette {
@@ -77,13 +78,6 @@
   // transition: opacity 2s ease-in-out;
 
   animation: roulette 0.5s linear;
-}
-
-.event-link {
-  margin-bottom: 6rem;
-  color: black;
-  margin: auto;
-  text-align: center;
 }
 
 .draw-result__error-message {
