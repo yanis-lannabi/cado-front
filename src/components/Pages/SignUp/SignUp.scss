@@ -15,7 +15,11 @@
   margin-bottom: 6.3rem;
 }
 
-.Website__h2 {
+.SignUp__h1 {
+  font-size: 3rem;
+  margin-top: 3rem;
+}
+.SignUp__h2 {
   margin: 2.5rem;
   font-size: 2rem;
 }
@@ -25,11 +29,11 @@
   padding: 0.2rem 1.9rem;
   border-radius: 0.5rem;
   background: #000000;
-  color: #dfdedf;
+  color: #dfdedf; 
   cursor: pointer;
 }
 
-.Website__title {
+.SignUp__title {
   text-align: center;
   margin-top: 4rem;
   margin-bottom: 5rem;
@@ -60,7 +64,7 @@ input {
   background-color: white;
 }
 
-.Website {
+.SignUp__Page {
   text-align: center;
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.5),
@@ -77,9 +81,10 @@ input {
 }
 
 @media (max-width: 720px) {
-  .Website__h1 {
+  .SignUp__h1 {
     font-size: 2rem;
     width: 80%;
+    margin: auto;
   }
   .SignUp {
     width: 100%;

@@ -26,7 +26,7 @@ const PersonalData = () => {
         console.error(
           'Erreur lors de la récupération des données utilisateur:',
           error
-        );
+        ); 
       }
     };
 
@@ -40,7 +40,7 @@ const PersonalData = () => {
   return (
     <div className="PersonalData">
       <header>
-        <h1 className='PersonalData__h1'>Données personnelles</h1>
+        <h1 className='PersonalData__Title'>Données personnelles</h1>
       </header>
       <div className="PersonalData__details">
         <div>

@@ -17,7 +17,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
-
+ 
   // Using the useEffect hook to validate email and password on each change
   useEffect(() => {
     // Checking the validity of the email
@@ -49,9 +49,9 @@ function Login() {
 
   // Component rendering
   return (
-    <div className="WebsiteName">
+    <div className="Login__Page">
       <div className="Login">
-        <h2 className="Login__h2">Connectez-vous à votre compte</h2>
+        <h1 className="Login__Title">Connectez-vous à votre compte</h1>
         {errorMessage && (
           <div className="Login__errorMessage">{errorMessage}</div>
         )}
@@ -80,7 +80,7 @@ function Login() {
           </button>
         </form>
         <p className="Login__newAccount">
-          ------Pas de compte, Créez-en un------
+          ------ Pas de compte ? Créez-en un ------
         </p>
         <button
           className="Login__createAccount"
