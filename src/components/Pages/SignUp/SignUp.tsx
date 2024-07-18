@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import './SignUp.scss';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
