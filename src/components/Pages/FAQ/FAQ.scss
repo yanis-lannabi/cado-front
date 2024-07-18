@@ -1,26 +1,62 @@
 //@use '../../styles/variables' as v;
 
-/*.FAQ-title {
+.FAQ-title {
   margin-bottom: 2.5rem;
   margin-left: 2rem;
   padding-top: 2.5rem;
+  font-size: 2.5rem;
 }
 
-h3 {
+.faq-question {
+  cursor: pointer;
   margin-bottom: 0.6rem;
-  margin-left: 4rem;
+  margin-left: 2rem;
   margin-top: 1rem;
 }
 
 .imageFAQ {
   margin-top: 5rem;
-  margin-left: 4rem;
+  margin-left: 3rem;
+  width: 50%;
 }
 
 .FAQ-category {
-  margin-left: 1rem;
+  //margin-left: 1rem;
+  background-color: #c69b70;
+  width: 50%;
+  padding-bottom: 20.5rem;
 }
 
 .FAQ-content {
-  margin-left: 3rem;
-}*/
+  margin-left: 7rem;
+  //margin-right: 2rem;
+  width: 80%;
+}
+
+.faq-container {
+  display: flex;
+  justify-content: space-between;
+  background-image: url('/src/assets/24.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed;
+  //padding-bottom: 18.8vh;
+}
+
+@media (max-width: 720px) {
+  .faq-container {
+    background-image: none;
+  }
+  .FAQ-category {
+    width: 100%;
+  }
+  .FAQ-title {
+    font-size: 2rem;
+  }
+  .faq-question,
+  .FAQ-content {
+    margin-left: 0.5rem;
+    width: 90%;
+  }
+}

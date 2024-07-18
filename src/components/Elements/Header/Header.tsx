@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/MainLogo.png';
@@ -8,15 +8,39 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('authData')
+  );
+
+  useEffect(() => {
+    function handleStorageChange() {
+      setIsAuthenticated(!!localStorage.getItem('authData'));
+    }
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem('authData');
+    setIsAuthenticated(false);
+    navigate('/se-connecter');
+  };
+
   let buttons;
-  if (
-    ['/', '/s-inscrire', '/resultat', '/mentions-legales', '/faq'].includes(
-      location.pathname
-    )
-  ) {
+  if (['/', '/s-inscrire', '/resultat'].includes(location.pathname)) {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Connexion</button>
+        <button
+          onClick={() =>
+            navigate(isAuthenticated ? '/mon-compte' : '/se-connecter')
+          }
+        >
+          {isAuthenticated ? 'Mon Compte' : 'Connexion'}
+        </button>
       </div>
     );
   } else if (
@@ -25,18 +49,24 @@ const Header: React.FC = () => {
       '/mes-evenements',
       '/creer-un-evenement',
       '/details-evenement',
+      '/faq',
+      '/mentions-legales',
     ].includes(location.pathname)
   ) {
     buttons = (
-      <div>
-        <button onClick={() => navigate('/mon-compte')}>Mon Compte</button>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+      <div className="Buttons-container">
+        <button className="Button" onClick={() => navigate('/mon-compte')}>
+          Mon Compte
+        </button>
+        <button className="Button" onClick={logout}>
+          Déconnexion
+        </button>{' '}
       </div>
     );
   } else if (location.pathname === '/mon-compte') {
     buttons = (
       <div>
-        <button onClick={() => navigate('/se-connecter')}>Déconnexion</button>
+        <button onClick={logout}>Déconnexion</button>{' '}
       </div>
     );
   } else if (location.pathname === '/se-connecter') {
@@ -45,9 +75,13 @@ const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/">
+      {location.pathname === '/' ? (
         <img src={logo} alt="Logo" className="logo" />
-      </Link>
+      ) : (
+        <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
+      )}
       {buttons}
     </header>
   );
