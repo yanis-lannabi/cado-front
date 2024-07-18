@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './DrawResult.scss';
 
 // fictive list of participants to test the feature
 const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
 
+// preparing the code for when the draw API is ready
+// interface Participant {
+//   participantName: string;
+// }
+
+interface Event {
+  eventName: string;
+  eventDate: string;
+}
+
 function DrawResult() {
+  // states specific to the drawing
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  //states specific to the event
+  const [event, setEvent] = useState<Event | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleDraw = (e) => {
     e.preventDefault();
@@ -30,6 +45,34 @@ function DrawResult() {
       setCurrentIndex(randomIndex);
     }, 2000);
   };
+
+  // preparing the code for when the draw API is ready
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // Effectue la requête API et met à jour l'état de l'événement avec les données reçues
+  //       const response = await fetch('https://cado.zapto.org/create-event');
+  //       const data = await response.json();
+  //       setEvent(data);
+  //     } catch (error) {
+  //       // En cas d'erreur, met à jour l'état de l'erreur avec un message d'erreur
+  //       setError(
+  //         'Nous sommes désolés, une erreur est survenue lors du chargement des données.'
+  //       );
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+  // if (error) {
+  //   return <div className="draw-result__error-message">{error}</div>;
+  // }
+
+  // // if data is not loaded yet, return "Loading..."
+  // if (!event) {
+  //   return <div className="draw-result__loading-message">Loading...</div>;
+  // }
 
   return (
     <div className="draw-result-page">

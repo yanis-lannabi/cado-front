@@ -86,6 +86,31 @@
   text-align: center;
 }
 
+.draw-result__error-message {
+  width: 50%;
+  margin: 27.5rem auto;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: rgb(238, 59, 59);
+  font-weight: bold;
+  border: 3px solid lightcoral;
+  padding: '10px';
+  border-radius: '5px';
+  background-color: #ffeae5;
+}
+
+.draw-result__loading-message {
+  width: 50%;
+  margin: 24.5rem auto;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: black;
+  font-weight: bold;
+  padding: '10px';
+  border-radius: '5px';
+  font-size: 5rem;
+}
+
 @media (max-width: 720px) {
   .draw-roulette {
     width: 25rem;
