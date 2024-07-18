@@ -42,14 +42,16 @@ function SignUp() {
       });
   };
   return (
-    <div className="WebsiteName">
+    <div className="Website">
       <header className="Website__title">
-        <h1>Organisez rapidement vos évènements</h1>
+        <h1 className="Website__h1"> Organisez rapidement vos évènements</h1>
       </header>
       <div className="SignUp">
-        <h2>Inscription</h2>
+        <h2 className="Website__h2">Inscription</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nom:</label>
+          <label htmlFor="name" className="Input">
+            Nom:
+          </label>
           <input
             className="SignUp__name"
             type="text"
@@ -58,7 +60,9 @@ function SignUp() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="Input">
+            Email:
+          </label>
           <input
             className="SignUp__email"
             type="email"
@@ -67,7 +71,9 @@ function SignUp() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+
           <label htmlFor="password">Mot de passe:</label>
+
           <input
             className="SignUp__password"
             type="password"

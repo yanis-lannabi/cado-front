@@ -8,6 +8,7 @@ function CreateEvent() {
   const [date, setDate] = useState('');
   const [user, setUser] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -40,6 +41,7 @@ function CreateEvent() {
       return;
     }
 
+
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
@@ -55,9 +57,9 @@ function CreateEvent() {
     const [day, month, year] = date.split('/');
     return `${year}-${month}-${day}`;
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const API = 'https://cado.zapto.org/create-event';
 
     // the name, date and participants fields must not be empty
@@ -65,6 +67,7 @@ function CreateEvent() {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;
     }
+
 
     // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = user.id;
@@ -76,6 +79,7 @@ function CreateEvent() {
       },
       ...participants,
     ];
+
 
     // participants.push({
     //   name: authData?.user.name,
@@ -93,10 +97,12 @@ function CreateEvent() {
         },
         {
           headers: {
+
             Authorization: `Bearer ${user.token}`,
           },
         }
       );
+
 
       console.log(eventResponse.data);
     } catch (error) {
@@ -105,7 +111,6 @@ function CreateEvent() {
       );
     }
   };
-
   return (
     <div className="create-event-page">
       <h1 className="create-event-h1">Créer mon évènement</h1>
@@ -123,7 +128,6 @@ function CreateEvent() {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-
         <div className="create-event__element">
           <label htmlFor="eventDate" className="create-event__element-title">
             * Date de l'évènement :
@@ -138,16 +142,15 @@ function CreateEvent() {
             }}
           />
         </div>
-
         <div className="create-event__element">
           <label htmlFor="participants" className="create-event__element-title">
             * Participants :
           </label>
-
           <div className="create-event__participants">
             {participants.map((participant, i) => (
               <div key={i} className="create-event__participant">
                 <input
+                  className="create-event__input-name"
                   type="text"
                   placeholder="Nom du participant"
                   value={participant.name}
@@ -162,6 +165,7 @@ function CreateEvent() {
                   }}
                 />
                 <input
+                  className="create-event__input-email"
                   type="email"
                   placeholder="E-mail du participant"
                   value={participant.email}
@@ -196,7 +200,6 @@ function CreateEvent() {
             </div>
           </div>
         </div>
-
         <p className="create-event__mandatory-fields">
           * Les champs avec une astérisque sont obligatoires
         </p>
@@ -216,5 +219,4 @@ function CreateEvent() {
     </div>
   );
 }
-
 export default CreateEvent;

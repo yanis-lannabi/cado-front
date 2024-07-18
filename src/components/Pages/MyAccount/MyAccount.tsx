@@ -1,6 +1,7 @@
 import './MyAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 const MyAccount = () => {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
@@ -25,16 +26,18 @@ const MyAccount = () => {
     };
     fetchUserData();
   }, []);
+
   return (
     <div className="MyAccount">
       <header className="MyAccount-title">
         <h1 className="MyAccount__h1">Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
+
         Bienvenue {''}
         {user?.name?.charAt(0).toUpperCase() +
-          user?.name?.slice(1).toLowerCase()}
-        !
+          user?.name?.slice(1).toLowerCase()}      
+        {''} !
       </p>
       <div className="MyAccount__Buttons">
         <button
@@ -43,12 +46,14 @@ const MyAccount = () => {
         >
           Données personnelles
         </button>
+
         <button
           className="MyAccount__MyEvents"
           onClick={() => navigate('/mes-evenements')}
         >
           Mes évènements
         </button>
+
         <button
           className="MyAccount__CreateEvent"
           onClick={() => navigate('/creer-un-evenement')}

@@ -1,4 +1,5 @@
 import './PersonalData.scss';
+
 import { useState, useEffect } from 'react';
 
 const PersonalData = () => {
@@ -50,11 +51,14 @@ const PersonalData = () => {
           </h2>
         </div>
         {/* <button onClick={handleSave}>Enregistrer</button> 
+
         Ce bouton sera utilisé si on met en place les modifications
         de données personnelles */}
       </div>
     </div>
   );
+
 };
+
 
 export default PersonalData;
