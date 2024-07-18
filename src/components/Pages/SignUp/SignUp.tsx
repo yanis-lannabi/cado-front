@@ -1,34 +1,40 @@
 /* eslint-disable no-console */
 import './SignUp.scss';
-import React, { useState } from 'react';
-// import Header from '../../Elements/Header/Header';
-// import Footer from '../../Elements/Footer/Footer';
+
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState('');
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // API call
-    // 'http://165.227.232.51:3000/register/' API ROUTE
-    fetch('https://cado.zapto.org/register/', {
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    fetch('http://165.227.232.51:3000/register/', {
+
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
         if (data.name && data.email && data.password) {
           setSignUpStatus('Inscription réussie !');
           setName('');
           setEmail('');
           setPassword('');
+          navigate('/se-connecter'); // Redirect to the login page
         } else {
           setSignUpStatus("Échec de l'inscription : Données manquantes");
         }
