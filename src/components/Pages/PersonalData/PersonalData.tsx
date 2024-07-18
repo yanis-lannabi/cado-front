@@ -33,21 +33,25 @@ const PersonalData = () => {
     fetchUserData();
   }, []);
 
+  const hidePassword = () => {
+    return '*'.repeat(10);
+  };
+
   return (
-    <div className="WebsiteName">
-      <header className="PersonalData__Title">
-        <h1>Données personnelles</h1>
+    <div className="PersonalData">
+      <header>
+        <h1 className='PersonalData__h1'>Données personnelles</h1>
       </header>
-      <div className="PersonalData">
+      <div className="PersonalData__details">
         <div>
-          <h2>
+          <h2 className='PersonalData__item'>
             <strong>Nom :</strong> {userData.name}
           </h2>
-          <h2>
+          <h2 className='PersonalData__item'>
             <strong>Email :</strong> {userData.email}
           </h2>
-          <h2>
-            <strong>Mot de passe :</strong> {userData.password}
+          <h2 className='PersonalData__item'>
+            <strong>Mot de passe :</strong> {hidePassword()}
           </h2>
         </div>
         {/* <button onClick={handleSave}>Enregistrer</button> 
@@ -57,8 +61,6 @@ const PersonalData = () => {
       </div>
     </div>
   );
-
 };
-
 
 export default PersonalData;
