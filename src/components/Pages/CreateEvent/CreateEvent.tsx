@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateEvent.scss';
-
+import { useNavigate } from 'react-router-dom';
 function CreateEvent() {
   const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
@@ -10,18 +9,17 @@ function CreateEvent() {
   const [user, setUser] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await fetch('https://cado.zapto.org/me', {
           method: 'GET',
-          credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
+          credentials: 'include',
         });
         const data = await response.json();
         console.log('data', data);
         if (response.ok) {
-          setUser(data); // Stockez les informations utilisateur
+          setUser(data);
         } else {
           setErrorMessage(data.message);
         }
@@ -31,47 +29,30 @@ function CreateEvent() {
     };
     fetchUserData();
   }, []);
-
   const handleAddParticipant = () => {
     const lastParticipant = participants[participants.length - 1];
-
-    // Check if the last participant has any empty field
     if (!lastParticipant.name || !lastParticipant.email) {
       setErrorMessage(
         "Attention : il est nécessaire de remplir tous les champs d'un participant avant d'en ajouter un nouveau ;)"
       );
       return;
     }
-
     setParticipants([...participants, { name: '', email: '' }]);
   };
-
   const handleRemoveParticipant = () => {
     const newParticipant = [...participants];
     newParticipant.pop();
     setParticipants(newParticipant);
-    // we remove the error message if the line is deleted
     setErrorMessage('');
-  };
-
-  const formattedDate = (date) => {
-    const [day, month, year] = date.split('/');
-    return `${year}-${month}-${day}`;
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const API = 'https://cado.zapto.org/create-event';
-
-    // the name, date and participants fields must not be empty
     if (!name || !date || !participants) {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;
     }
-
-    // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = user.id;
-
     const participantWithOrganizer = [
       {
         name: user.name,
@@ -79,12 +60,6 @@ function CreateEvent() {
       },
       ...participants,
     ];
-
-    // participants.push({
-    //   name: authData?.user.name,
-    //   email: authData?.user.email,
-    // });
-
     try {
       const eventResponse = await axios.post(
         API,
@@ -100,8 +75,8 @@ function CreateEvent() {
           },
         }
       );
-
       console.log(eventResponse.data);
+      navigate('/mes-evenements');
     } catch (error) {
       setErrorMessage(
         "Nous sommes désolés... Une erreur est survenue lors de la création de l'évènement"
@@ -111,7 +86,6 @@ function CreateEvent() {
   return (
     <div className="create-event-page">
       <h1 className="create-event-h1">Créer mon évènement</h1>
-
       <form className="create-event" onSubmit={handleSubmit}>
         <div className="create-event__element">
           <label htmlFor="eventName" className="create-event__element-title">
@@ -155,7 +129,6 @@ function CreateEvent() {
                     const newParticipants = [...participants];
                     newParticipants[i].name = e.target.value;
                     setParticipants(newParticipants);
-
                     if (e.target.value && newParticipants[i].email) {
                       setErrorMessage('');
                     }
@@ -170,7 +143,6 @@ function CreateEvent() {
                     const newParticipants = [...participants];
                     newParticipants[i].email = e.target.value;
                     setParticipants(newParticipants);
-
                     if (e.target.value && newParticipants[i].name) {
                       setErrorMessage('');
                     }
@@ -178,7 +150,6 @@ function CreateEvent() {
                 />
               </div>
             ))}
-
             <div className="create-event__addNremove-buttons">
               <input
                 type="button"
@@ -200,18 +171,14 @@ function CreateEvent() {
         <p className="create-event__mandatory-fields">
           * Les champs avec une astérisque sont obligatoires
         </p>
-
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-
         <input
           type="submit"
           className="create-event__validation-button"
           value="Valider"
-          // if a mandatory field is empty, the button is disabled
           disabled={
             !name || !date || participants.some((p) => !p.name || !p.email)
           }
-          onClick={() => navigate('/mes-evenements')}
         />
       </form>
     </div>
