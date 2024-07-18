@@ -10,19 +10,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
-.Login__h2 {
+.Login__Title {
   margin-top: 5rem;
   margin-bottom: 5rem;
   font-size: 3rem;
 }
 
-.Website__Title {
-  margin-left: 15rem;
-  margin-top: 3rem;
-  font-size: x-large;
-}
 
 .Login__email {
   margin-bottom: 0.3rem;
@@ -53,6 +49,7 @@
   font-size: 1.5rem;
   background-color: #f0c87e;
 }
+
 
 @media (max-width: 720px) {
   .Login__h2 {

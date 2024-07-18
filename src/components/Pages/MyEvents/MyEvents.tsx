@@ -1,23 +1,19 @@
 import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 // interface Event {
 //   id: number;
 //   name: string;
 //   date: string;
 //   // Autres données ?
 // }
-
 function MyEvent({ user }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
-
   const handleEventClick = (event: any) => {
     setSelectedEvent(event);
   };
-
   const fetchEvents = async () => {
     try {
       const response = await fetch('https://cado.zapto.org/me', {
@@ -33,19 +29,18 @@ function MyEvent({ user }) {
       console.error('Erreur lors du chargement des événements:', error);
     }
   };
-
   useEffect(() => {
     fetchEvents();
   }, [user]);
-
   return (
-    <div className="WebsiteName">
-      <header className="Website__Title">
-        <h1>Mes évènements</h1>
+    <div className="MyEvents">
+      <header className="MyEvents__Title">
+        <h1 className="MyEvents__h1">Mes évènements</h1>
       </header>
-      <div className="MyEvent">
+      <div className="MyEvents__container">
+      <div className="MyEvents__List">
         {events.map((event: { name: string }, index) => (
-          <button
+          <button className="MyEvents__Button"
             key={index}
             type="button"
             onClick={() => handleEventClick(event)}
@@ -53,16 +48,17 @@ function MyEvent({ user }) {
             {event.name}
           </button>
         ))}
-
+        </div>
         {selectedEvent && (
-          <div>
-            <h2>{(selectedEvent as any).name}</h2>
-            <p>{(selectedEvent as any).date}</p>
-            <h3>Participants:</h3>
-            <ul>
+          <div className="MyEvent__Details">
+            <h2 className="MyEvent__Title">Nom :{' '}{(selectedEvent as any).name.toUpperCase()}</h2>
+            <h3 className="MyEvent__h3">Date :{' '}</h3>
+            <p className="MyEvent__Date">{(selectedEvent as any).date}</p>
+            <h3 className="MyEvent__h3">Participants :</h3>
+            <ul className="MyEvent__Participants-List">
               {selectedEvent.participants.map(
                 (participant: any, index: any) => (
-                  <li key={index}>
+                  <li className="MyEvent__Participant" key={index}>
                     {participant.name} - {participant.email}
                   </li>
                 )
@@ -70,19 +66,18 @@ function MyEvent({ user }) {
             </ul>
           </div>
         )}
-
-        <h2>Nouvel événement</h2>
+        
+        </div>
         <button
           type="button"
-          className="account-creation-button"
+          className="MyEvent__Event-creation-button"
           onClick={() => navigate('/creer-un-evenement')}
         >
           Créer un événement
         </button>
-      </div>
+      
     </div>
   );
 }
-
 // là où on récupère les events, il faut des propriétés name et details
 export default MyEvent;

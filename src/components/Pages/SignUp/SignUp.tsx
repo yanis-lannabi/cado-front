@@ -17,7 +17,7 @@ function SignUp() {
     fetch('https://cado.zapto.org/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
-      headers: {
+      headers: { 
         'Content-Type': 'application/json',
       },
     })
@@ -47,15 +47,15 @@ function SignUp() {
       });
   };
   return (
-    <div className="Website">
-      <header className="Website__title">
-        <h1 className="Website__h1"> Organisez rapidement vos évènements</h1>
+    <div className="SignUp__Page">
+      <header className="SignUp__title">
+        <h1 className="SignUp__h1"> Organisez rapidement vos évènements</h1>
       </header>
       <div className="SignUp">
-        <h2 className="Website__h2">Inscription</h2>
+        <h2 className="SignUp__h2">Inscription</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name" className="Input">
-            Nom:
+            Nom :
           </label>
           <input
             className="SignUp__name"
@@ -66,7 +66,7 @@ function SignUp() {
             onChange={(e) => setName(e.target.value)}
           />
           <label htmlFor="email" className="Input">
-            Email:
+            Email :
           </label>
           <input
             className="SignUp__email"
@@ -77,7 +77,7 @@ function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password">Mot de passe:</label>
+          <label htmlFor="password" className="Input">Mot de passe :</label>
 
           <input
             className="SignUp__password"
