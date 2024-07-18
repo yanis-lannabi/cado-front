@@ -3,21 +3,19 @@ import './SignUp.scss';
 import React, { useState } from 'react';
 // import Header from '../../Elements/Header/Header';
 // import Footer from '../../Elements/Footer/Footer';
-
 function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signUpStatus, setSignUpStatus] = useState('');
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
     // API call
-
-    fetch('http://165.227.232.51:3000/register/', {
+    // 'http://165.227.232.51:3000/register/' API ROUTE
+    fetch('https://cado.zapto.org/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: {
@@ -43,7 +41,6 @@ function SignUp() {
         setPassword('');
       });
   };
-
   return (
     <div className="Website">
       <header className="Website__title">
@@ -75,9 +72,8 @@ function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password" className="Input">
-            Mot de passe:
-          </label>
+          <label htmlFor="password">Mot de passe:</label>
+
           <input
             className="SignUp__password"
             type="password"
@@ -87,9 +83,8 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
           {signUpStatus && <p>{signUpStatus}</p>}
-
           <button className="SignUp__confirmation" type="submit">
-            S&apos;inscrire
+            S'inscrire
           </button>
         </form>
       </div>

@@ -15,6 +15,7 @@
   background-image: #ffffff;
   border: solid black 0.4rem;
   background-color: #f0c87e;
+
   &__element {
     display: flex;
     position: relative;
@@ -29,11 +30,13 @@
   &__participants {
     display: flex;
     flex-direction: column;
+
     &__addNremove-buttons {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
     }
+
     &__add-button,
     &__remove-button {
       margin: auto;
@@ -74,11 +77,14 @@ input {
 #eventDate {
   color: grey;
 }
+
 // if the button is disabled, the background color is grey and the cursor is not allowed
+
 .create-event__validation-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
 .error-message {
   margin: auto;
   padding: 0.8rem 2rem;
@@ -89,6 +95,7 @@ input {
   border-radius: '5px';
   background-color: #ffeae5;
 }
+
 
 .create-event-page {
   background-image: linear-gradient(
@@ -123,3 +130,4 @@ input {
     margin-bottom: 0.5rem;
   }
 }
+

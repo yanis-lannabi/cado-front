@@ -1,18 +1,31 @@
-// Importing necessary libraries and components
 import './MyAccount.scss';
 import { useNavigate } from 'react-router-dom';
-// src/components/Pages/MyAccount/MyAccount.tsx
-
-import { useAuth } from '../../../Hooks/useAuth';
+import { useEffect, useState } from 'react';
 
 const MyAccount = () => {
+  const [user, setUser] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const { authData } = useAuth();
-
-  if (!authData || !authData.user) {
-    return <div>Veuillez vous connecter.</div>;
-  }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('https://cado.zapto.org/me', {
+          method: 'GET',
+          credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
+        });
+        const data = await response.json();
+        console.log('data', data);
+        if (response.ok) {
+          setUser(data); // Stockez les informations utilisateur
+        } else {
+          setError(data.message);
+        }
+      } catch (err) {
+        setError('An error occurred. Please try again.');
+      }
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <div className="MyAccount">
@@ -20,10 +33,11 @@ const MyAccount = () => {
         <h1 className="MyAccount__h1">Mon compte</h1>
       </header>
       <p className="MyAccount-WelcomeMessage">
-        Bienvenue{' '}
-        {authData.user.name.charAt(0).toUpperCase() +
-          authData.user.name.slice(1).toLowerCase()}
-        !
+
+        Bienvenue {''}
+        {user?.name?.charAt(0).toUpperCase() +
+          user?.name?.slice(1).toLowerCase()}      
+        {''} !
       </p>
       <div className="MyAccount__Buttons">
         <button
@@ -50,5 +64,4 @@ const MyAccount = () => {
     </div>
   );
 };
-
 export default MyAccount;

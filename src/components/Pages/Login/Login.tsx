@@ -17,10 +17,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   // Initializing the useNavigate hook for page navigation
   const navigate = useNavigate();
-  // Function to handle account creation, which redirects to the registration page
-  const handleCreateAccount = () => {
-    navigate('/s-inscrire');
-  };
+
   // Using the useEffect hook to validate email and password on each change
   useEffect(() => {
     // Checking the validity of the email
@@ -85,7 +82,10 @@ function Login() {
         <p className="Login__newAccount">
           ------Pas de compte, Créez-en un------
         </p>
-        <button className="Login__createAccount" onClick={handleCreateAccount}>
+        <button
+          className="Login__createAccount"
+          onClick={() => navigate('/s-inscrire')}
+        >
           Créer un compte
         </button>
       </div>
