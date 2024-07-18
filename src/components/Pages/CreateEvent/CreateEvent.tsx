@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateEvent.scss';
 
@@ -8,6 +9,7 @@ function CreateEvent() {
   const [date, setDate] = useState('');
   const [user, setUser] = useState('');
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -41,7 +43,6 @@ function CreateEvent() {
       return;
     }
 
-
     setParticipants([...participants, { name: '', email: '' }]);
   };
 
@@ -68,7 +69,6 @@ function CreateEvent() {
       return;
     }
 
-
     // we want to make sure the organizer is part of the drawing (and add him as the very first participant in the array)
     const organizerId = user.id;
 
@@ -79,7 +79,6 @@ function CreateEvent() {
       },
       ...participants,
     ];
-
 
     // participants.push({
     //   name: authData?.user.name,
@@ -97,12 +96,10 @@ function CreateEvent() {
         },
         {
           headers: {
-
             Authorization: `Bearer ${user.token}`,
           },
         }
       );
-
 
       console.log(eventResponse.data);
     } catch (error) {
@@ -214,6 +211,7 @@ function CreateEvent() {
           disabled={
             !name || !date || participants.some((p) => !p.name || !p.email)
           }
+          onClick={() => navigate('/mes-evenements')}
         />
       </form>
     </div>
