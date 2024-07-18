@@ -33,7 +33,7 @@ function DrawResult() {
 
   return (
     <div className="draw-result-page">
-      <h1>Bienvenue (prénom) !</h1>
+      <h1 className="draw-result__title">Bienvenue (prénom) !</h1>
 
       <p className="draw-text">
         {' '}
