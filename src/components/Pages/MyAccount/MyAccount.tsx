@@ -2,6 +2,7 @@ import './MyAccount.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+// eslint-disable-next-line react/function-component-definition
 const MyAccount = () => {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
