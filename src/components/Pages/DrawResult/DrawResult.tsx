@@ -6,7 +6,6 @@ function DrawResult() {
   // states specific to the drawing
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const participants = ['moi', 'toi', 'lui', 'eux'];
   // preparing the code for when the draw API is ready
   // //states specific to the event
@@ -18,7 +17,6 @@ function DrawResult() {
 
     // once the button is clicked, we disable it so that the user can not click again
     setIsButtonClicked(true);
-    setIsButtonDisabled(true);
 
     let index = 0;
 
@@ -75,13 +73,11 @@ function DrawResult() {
         {' '}
         La personne à qui tu devras offrir un cadeau est...
       </p>
-      <button
-        className="draw-button"
-        onClick={handleDraw}
-        disabled={isButtonDisabled}
-      >
-        Clique ici !
-      </button>
+      {!isButtonClicked && (
+        <button className="draw-button" onClick={handleDraw}>
+          Clique ici !
+        </button>
+      )}
       <div className="draw-roulette">
         {!isButtonClicked ? (
           <p className="placeholder">?</p>
