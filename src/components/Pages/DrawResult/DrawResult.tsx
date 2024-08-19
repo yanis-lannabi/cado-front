@@ -7,6 +7,7 @@ import axios from 'axios';
 function DrawResult() {
   const { token } = useParams<{ token: string }>();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [data, setData] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [receiverName, setReceiverName] = useState<string | null>(null);
   const [participants, setParticipants] = useState<string[]>([
@@ -25,13 +26,16 @@ function DrawResult() {
       const response = await axios.get(
         `http://localhost:3000/resultat/${token}`
       );
-      const data = response.json();
+      setData(response.data);
 
-      console.log('Data from API:', { giver, receiver, event_id });
+      console.log('Data from API:', response.data);
 
       // Met à jour la liste des participants avec le récepteur ajouté à la fin
-      setParticipants((prevParticipants) => [...prevParticipants, receiver]);
-      setReceiverName(receiver);
+      setParticipants((prevParticipants) => [
+        ...prevParticipants,
+        response.data.receiver,
+      ]);
+      setReceiverName(response.data.receiver);
 
       setIsButtonClicked(true);
 
@@ -59,7 +63,7 @@ function DrawResult() {
 
   return (
     <div className="draw-result-page">
-      <h1 className="draw-result__title">Bienvenue {data.giver} !</h1>
+      <h1 className="draw-result__title">Bienvenue !</h1>
       <p className="draw-text">
         Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le
         (JJ/MM/AAAA).
@@ -76,7 +80,12 @@ function DrawResult() {
         {!isButtonClicked ? (
           <p className="placeholder">?</p>
         ) : (
-          <p className="result">{participants[currentIndex]}</p>
+          <>
+            {console.log('currentIndex:', currentIndex)}
+            {console.log('participants:', participants)}
+
+            <p className="result">{participants[currentIndex]}</p>
+          </>
         )}
       </div>
       {error && <p className="error-message">{error}</p>}
