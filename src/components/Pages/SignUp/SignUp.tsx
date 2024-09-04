@@ -14,7 +14,7 @@ function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch('http://localhost:3000/register/', {
+    fetch('https://cado.zapto.org/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
       headers: {

@@ -12,7 +12,7 @@ function MyEvent({ user }) {
   };
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:3000/me', {
+      const response = await fetch('https://cado.zapto.org/me', {
         // à vérifier pour fetch les bonnes données des événements
         method: 'GET',
         credentials: 'include',
@@ -25,7 +25,7 @@ function MyEvent({ user }) {
   };
   const handleDeleteEvent = async (event: any) => {
     try {
-      await axios.delete('http://localhost:3000/delete-event', {
+      await axios.delete('https://cado.zapto.org/delete-event', {
         data: { id: selectedEvent?.id },
       });
       fetchEvents();

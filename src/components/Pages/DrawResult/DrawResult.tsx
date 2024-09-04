@@ -31,7 +31,9 @@ function DrawResult() {
   useEffect(() => {
     const fetchDrawPair = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/view/${token}`);
+        const response = await fetch(
+          `https://cado.zapto.org/resultat/${token}`
+        );
         const data = await response.json();
         setDrawPair(data);
       } catch (error) {
