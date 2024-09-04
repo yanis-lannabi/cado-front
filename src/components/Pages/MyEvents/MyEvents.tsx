@@ -1,12 +1,8 @@
 import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// interface Event {
-//   id: number;
-//   name: string;
-//   date: string;
-//   // Autres données ?
-// }
+import axios from 'axios';
+
 function MyEvent({ user }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
@@ -22,11 +18,20 @@ function MyEvent({ user }) {
         credentials: 'include',
       });
       const data = await response.json();
-      console.log(data);
       setEvents(data.events);
-      console.log(data);
     } catch (error) {
       console.error('Erreur lors du chargement des événements:', error);
+    }
+  };
+  const handleDeleteEvent = async (event: any) => {
+    try {
+      await axios.delete('http://localhost:3000/delete-event', {
+        data: { id: selectedEvent?.id },
+      });
+      fetchEvents();
+      setSelectedEvent(null);
+    } catch (error) {
+      alert("Erreur lors de la suppression de l'événement:");
     }
   };
   useEffect(() => {
@@ -67,6 +72,13 @@ function MyEvent({ user }) {
                 )
               )}
             </ul>
+            <button
+              type="submit"
+              className="MyEvent__Details-button"
+              onClick={handleDeleteEvent}
+            >
+              Supprimer l'évènement
+            </button>
           </div>
         )}
       </div>
