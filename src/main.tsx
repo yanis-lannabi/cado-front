@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { User } from './Services/types';
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
 import DrawResult from './components/Pages/DrawResult/DrawResult';
-import EventDetails from './components/Pages/EventDetails/EventDetails';
 import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
@@ -21,6 +20,8 @@ import Footer from './components/Elements/Footer/Footer';
 import './styles/index.scss';
 
 const App = () => {
+  const userString = localStorage.getItem('user');
+  const user: User | null = userString ? JSON.parse(userString) : null;
   return (
     <Router>
       <Header />
@@ -36,14 +37,13 @@ const App = () => {
           }
         />
         <Route
-          path="/resultat"
+          path="/resultat/:token"
           element={
             <ProtectedRoute>
               <DrawResult />
             </ProtectedRoute>
           }
         />
-        <Route path="/details-evenement" element={<EventDetails />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />
@@ -60,7 +60,7 @@ const App = () => {
           path="/mes-evenements"
           element={
             <ProtectedRoute>
-              <MyEvents />
+              {user ? <MyEvents user={user} /> : <p>Loading...</p>}
             </ProtectedRoute>
           }
         />

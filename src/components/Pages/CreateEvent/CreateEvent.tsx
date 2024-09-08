@@ -2,17 +2,25 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CreateEvent.scss';
 import { useNavigate } from 'react-router-dom';
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
 function CreateEvent() {
   const [errorMessage, setErrorMessage] = useState('');
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState<User | null>(null);
   const [participants, setParticipants] = useState([{ name: '', email: '' }]);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('https://cado.zapto.org/me', {
+        const response = await fetch('http://localhost:3000/me', {
           method: 'GET',
           credentials: 'include',
         });
@@ -52,11 +60,11 @@ function CreateEvent() {
       setErrorMessage('Veuillez remplir tous les champs obligatoires');
       return;
     }
-    const organizerId = user.id;
+    const organizerId = user ? user.id : '';
     const participantWithOrganizer = [
       {
-        name: user.name,
-        email: user.email,
+        name: user ? user.name : '',
+        email: user ? user.email : '',
       },
       ...participants,
     ];
@@ -71,7 +79,7 @@ function CreateEvent() {
         },
         {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user ? user.token : ''}`,
           },
         }
       );

@@ -14,10 +14,10 @@ function SignUp() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch('https://cado.zapto.org/register/', {
+    fetch('http://localhost:3000/register/', {
       method: 'POST',
       body: JSON.stringify({ name, email, password }),
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
       },
     })
@@ -77,7 +77,9 @@ function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label htmlFor="password" className="Input">Mot de passe :</label>
+          <label htmlFor="password" className="Input">
+            Mot de passe :
+          </label>
 
           <input
             className="SignUp__password"

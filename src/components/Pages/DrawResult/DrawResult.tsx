@@ -1,44 +1,45 @@
 import { useState, useEffect } from 'react';
 import './DrawResult.scss';
+import axios from 'axios';
 
-// fictive list of participants to test the feature
-const participants = ['Shakira', 'Beyoncé', 'Babar', 'Neymar', 'Pikachu'];
-
-// preparing the code for when the draw API is ready
-// interface Giver {
-//   giverName: string;
-// }
-//
-// interface Participants [{
-//   participantName: string;
-// }]
-//
-// interface Receiver {
-//   receiverName: string;
-// }
-
-interface Event {
-  name: string;
-  date: string;
-}
+// Fictive list of participants to test the feature
+const initialParticipants = [
+  'Shakira',
+  'Beyoncé',
+  'Babar',
+  'Neymar',
+  'Pikachu',
+];
 
 function DrawResult() {
-  // states specific to the drawing
+  // States specific to the drawing
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [receiver, setReceiver] = useState('');
+  const [participants, setParticipants] = useState(initialParticipants);
 
-  // preparing the code for when the draw API is ready
-  // //states specific to the event
-  // const [event, setEvent] = useState<Event | null>(null);
-  // const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    // Fetch the receiver data from the API
+    axios
+      .get('https://cado.zapto.org/resultat/:token')
+      .then((response) => {
+        const fetchedReceiver = response.data;
+        setReceiver(fetchedReceiver);
+        // Add the receiver to the participants list if not already present
+        if (!participants.includes(fetchedReceiver)) {
+          setParticipants([...participants, fetchedReceiver]);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching receiver:', error);
+      });
+  }, []); // Empty dependency array to run only once when the component mounts
 
-  const handleDraw = (e) => {
+  const handleDraw = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // once the button is clicked, we disable it so that the user can not click again
+    // Once the button is clicked, we remove it so that the user cannot click again
     setIsButtonClicked(true);
-    setIsButtonDisabled(true);
 
     let index = 0;
 
@@ -50,64 +51,41 @@ function DrawResult() {
     setTimeout(() => {
       clearInterval(intervalId);
 
-      const randomIndex = Math.floor(Math.random() * participants.length);
-      setCurrentIndex(randomIndex);
+      // Ensure the final result is the receiver
+      const receiverIndex = participants.indexOf(receiver);
+      setCurrentIndex(receiverIndex);
     }, 2000);
   };
-
-  // preparing the code for when the draw API is ready
-  // const fetchEvent = async () => {
-  //   try {
-  //     const response = await fetch('https://cado.zapto.org/me', {
-  //       // à vérifier pour fetch les bonnes données des événements
-  //       method: 'GET',
-  //       credentials: 'include',
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setEvent(data.events);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Erreur lors du chargement des événements:', error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchEvent();
-  // }, [user]);
 
   return (
     <div className="draw-result-page">
       <h1 className="draw-result__title">Bienvenue (prénom) !</h1>
-      {/* for when the API is ready */}
+      {/* For when the API is ready */}
       {/* <h1 className="draw-result__title">Bienvenue {giver.name} !</h1> */}
 
       <p className="draw-text">
         Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le
         (JJ/MM/AAAA).
       </p>
-      {/* for when the API is ready */}
-      {/* <p className="event-details">
-        Tu es invité(e) à participer à l'évènement (Nom de l'évènement), le (JJ/MM/AAAA).
-      </p> */}
 
       <p className="draw-text">
-        {' '}
         La personne à qui tu devras offrir un cadeau est...
       </p>
-      <button
-        className="draw-button"
-        onClick={handleDraw}
-        disabled={isButtonDisabled}
-      >
-        Clique ici !
-      </button>
+      <p>
+        {!isButtonClicked ? (
+          <button type="button" className="draw-button" onClick={handleDraw}>
+            Clique ici !
+          </button>
+        ) : (
+          ''
+        )}
+      </p>
       <div className="draw-roulette">
         {!isButtonClicked ? (
           <p className="placeholder">?</p>
-        ) : participants[currentIndex] ? (
-          <p className="result"> {participants[currentIndex]} </p>
-        ) : null}
+        ) : (
+          <p className="result"> {receiver} </p>
+        )}
       </div>
     </div>
   );
