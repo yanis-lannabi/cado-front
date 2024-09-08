@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { User } from './Services/types';
 import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
@@ -20,6 +20,8 @@ import Footer from './components/Elements/Footer/Footer';
 import './styles/index.scss';
 
 const App = () => {
+  const userString = localStorage.getItem('user');
+  const user: User | null = userString ? JSON.parse(userString) : null;
   return (
     <Router>
       <Header />
@@ -58,7 +60,7 @@ const App = () => {
           path="/mes-evenements"
           element={
             <ProtectedRoute>
-              <MyEvents />
+              {user ? <MyEvents user={user} /> : <p>Loading...</p>}
             </ProtectedRoute>
           }
         />

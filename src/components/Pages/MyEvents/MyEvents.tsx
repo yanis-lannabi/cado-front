@@ -2,13 +2,8 @@ import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { User } from '../../../Services/types';
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  token: string;
-}
 interface Event {
   id: number;
   name: string;
