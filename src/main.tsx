@@ -5,7 +5,6 @@ import Login from './components/Pages/Login/Login';
 import SignUp from './components/Pages/SignUp/SignUp';
 import CreateEvent from './components/Pages/CreateEvent/CreateEvent';
 import DrawResult from './components/Pages/DrawResult/DrawResult';
-import EventDetails from './components/Pages/EventDetails/EventDetails';
 import FAQ from './components/Pages/FAQ/FAQ';
 import HomePage from './components/Pages/HomePage/HomePage';
 import LegalNotices from './components/Pages/LegalNotices/LegalNotices';
@@ -43,7 +42,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/details-evenement" element={<EventDetails />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<LegalNotices />} />

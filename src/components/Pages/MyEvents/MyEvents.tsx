@@ -1,18 +1,29 @@
 import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
-function MyEvent({ user }) {
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
+interface MyEventProps {
+  user: User;
+}
+const MyEvent: React.FC<MyEventProps> = ({ user }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
+
   const handleEventClick = (event: any) => {
     setSelectedEvent(event);
   };
   const fetchEvents = async () => {
     try {
-      const response = await fetch('https://cado.zapto.org/me', {
+      const response = await fetch('http://localhost:3000/me', {
         // à vérifier pour fetch les bonnes données des événements
         method: 'GET',
         credentials: 'include',
@@ -23,7 +34,7 @@ function MyEvent({ user }) {
       console.error('Erreur lors du chargement des événements:', error);
     }
   };
-  const handleDeleteEvent = async (event: any) => {
+  const handleDeleteEvent = async () => {
     try {
       await axios.delete('https://cado.zapto.org/delete-event', {
         data: { id: selectedEvent?.id },
@@ -91,6 +102,6 @@ function MyEvent({ user }) {
       </button>
     </div>
   );
-}
+};
 // là où on récupère les events, il faut des propriétés name et details
 export default MyEvent;
