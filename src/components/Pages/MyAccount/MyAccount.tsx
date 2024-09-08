@@ -17,7 +17,7 @@ const MyAccount = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/me', {
+        const response = await fetch('https://cado.zapto.org/me', {
           method: 'GET',
           credentials: 'include', // Assurez-vous que les cookies sont inclus dans la requête
         });
