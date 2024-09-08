@@ -1,20 +1,26 @@
 import './MyEvents.scss';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
   token: string;
+}
+interface Event {
+  id: number;
+  name: string;
+  date: string;
+  participants: { name: string; email: string }[];
 }
 
 interface MyEventProps {
   user: User;
 }
 const MyEvent: React.FC<MyEventProps> = ({ user }) => {
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
