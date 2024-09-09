@@ -11,7 +11,7 @@ export const login = async (
   email: string,
   password: string
 ): Promise<AuthResponse> => {
-  const response = await fetch('http://localhost:3000/login/', {
+  const response = await fetch('https://cado.zapto.org/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
